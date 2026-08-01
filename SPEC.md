@@ -53,3 +53,17 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - `npm run lint` senza errori
 - `npm test` verde (app renderizza, 6 route con titolo corretto, filtro galleria, validazione form)
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-01)
+- `npm run build` senza errori: **PASS** (build in 232ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (7/7 test, incluse le 6 route + titolo + header/footer)
+- Deploy Vercel "Ready" dopo il push finale: **PASS** (verificato via GitHub commit status API su ogni commit della fase, tutti "success"; `curl` su https://lombardo-serramenti.vercel.app/ e /galleria → HTTP 200)
+- 6 pagine navigabili, nessuna pagina bianca, palette scura/metallica con accento coerente: **PASS** (verificato con browser headless: screenshot Home desktop, tutte le route caricate senza errori console)
+- Galleria: filtro per categoria funzionante: **PASS** (verificato: 10 card totali → 2 dopo filtro "Portoni")
+- Preventivo: validazione su invio vuoto + invio simulato con successo: **PASS** (verificato: 5 errori su invio vuoto, conferma "Richiesta inviata" su invio compilato)
+- Mobile: hamburger apribile, niente scroll orizzontale: **PASS** (verificato a 390px: menu si apre, `document.body.scrollWidth` = `window.innerWidth`)
+- Reload (F5) su /galleria senza 404: **PASS** (grazie a `vercel.json`; verificato via `curl` diretto sulla route)
+- Click letterale su ogni voce del menu dal browser, da PC e da telefono reali: **NON VERIFICATO** — verificato in modo equivalente (navigazione diretta alle route + test automatici), ma il click umano sul menu e la prova su un telefono reale restano da fare in UAT
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
