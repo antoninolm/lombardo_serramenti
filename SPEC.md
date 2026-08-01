@@ -21,6 +21,9 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 ## Backlog
 - Sostituire claim hero con motto ufficiale "il ferro è il nostro mestiere" o validare claim alternativo
 - Setup SSH GitHub
+- Invio reale form Preventivo via Resend (Vercel serverless function) — Fase 3, vedi CLAUDE.md
+- Integrare mappa reale (embed Google Maps) in Contatti — Fase 3, ora solo segnaposto
+- Valutare `npm audit fix` per l'advisory su react-router (RSC Mode CSRF Bypass) — non applicabile a questo setup SPA senza data router, ma da rivalutare se si passa a `createBrowserRouter`
 
 ## Fase 2 — Contratto
 
