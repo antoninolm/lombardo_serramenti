@@ -25,3 +25,6 @@ dist-ssr
 # Secrets
 .env
 .env.*
+
+# Windows download metadata sidecar files
+*:Zone.Identifier
