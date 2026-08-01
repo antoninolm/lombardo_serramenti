@@ -12,6 +12,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-01: I riferimenti di design si trovano in `materiali/brand/design/bozza1/export/*.html` e il logo in `materiali/brand/logo-lombardo.png` (percorsi corretti rispetto a `materiali/design/export/` e `materiali/design/assets/` inizialmente indicati, che non esistono)
 - 2026-08-01: Remote GitHub passato da SSH a HTTPS (`gh auth setup-git`) per sbloccare i push automatici di Claude Code; niente chiave SSH configurata sulla macchina. Non annulla il backlog "Setup SSH GitHub", solo non più bloccante nel frattempo
 - 2026-08-01: Aggiunti Google Fonts (Oswald+Barlow) e token palette scura/metallica (`@theme` in `index.css`) come anticipazione minima di stile; rifinitura completa (colori esatti, font, eventuale self-hosting) in Fase 6
+- 2026-08-01: Aggiunto `vercel.json` con rewrite SPA (tutte le route → `/index.html`), necessario perché il routing è lato client (React Router): senza rewrite, ricaricare la pagina (F5) su una route diversa da `/` restituisce 404 su Vercel
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
