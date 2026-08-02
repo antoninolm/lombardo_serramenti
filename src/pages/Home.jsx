@@ -6,10 +6,11 @@ import FeatureCard from '../components/FeatureCard'
 import CategoryCard from '../components/CategoryCard'
 import StatsBand from '../components/StatsBand'
 import CtaBanner from '../components/CtaBanner'
+import Carousel from '../components/Carousel'
 import { prodotti } from '../data/prodotti'
-import realizzazione1 from '../assets/galleria/thumb/galleria9.webp'
-import realizzazione2 from '../assets/galleria/thumb/galleria10.webp'
-import realizzazione3 from '../assets/galleria/thumb/galleria12.webp'
+import { galleriaItems } from '../data/galleria'
+
+const REALIZZAZIONI_EAGER_COUNT = 4
 
 const features = [
   {
@@ -28,12 +29,6 @@ const features = [
     title: 'Assistenza nel tempo',
     description: 'Manutenzione e riparazioni anche a distanza di anni dall’installazione.',
   },
-]
-
-const realizzazioni = [
-  { alt: 'Scala esterna con ringhiera in ferro zincato', src: realizzazione1 },
-  { alt: 'Ringhiera per scala interna in acciaio inox', src: realizzazione2 },
-  { alt: 'Cappa camino su misura in lamiera di ferro', src: realizzazione3 },
 ]
 
 export default function Home() {
@@ -102,16 +97,19 @@ export default function Home() {
             </Link>
           }
         />
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          {realizzazioni.map((foto) => (
-            <img
-              key={foto.src}
-              src={foto.src}
-              alt={foto.alt}
-              loading="lazy"
-              className="aspect-[4/3] w-full rounded-lg object-cover"
-            />
-          ))}
+        <div className="mt-8">
+          <Carousel
+            items={galleriaItems}
+            ariaLabel="Carosello realizzazioni"
+            renderItem={(item, index) => (
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading={index < REALIZZAZIONI_EAGER_COUNT ? 'eager' : 'lazy'}
+                className="aspect-[4/3] w-full rounded-lg object-cover"
+              />
+            )}
+          />
         </div>
       </section>
 
