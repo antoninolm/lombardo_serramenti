@@ -28,3 +28,6 @@ dist-ssr
 
 # Windows download metadata sidecar files
 *:Zone.Identifier
+
+# predisposizione lightbox, non usate — rigenerabili con npm run images:galleria
+src/assets/galleria/full/
