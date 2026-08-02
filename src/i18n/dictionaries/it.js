@@ -25,8 +25,13 @@ export const it = {
     hero: {
       eyebrow: 'Officina Artigiana',
       claim: 'Il ferro è il nostro mestiere.',
-      secondary:
+      quotes: [
         'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da tre generazioni.',
+        'Il ferro non si comanda: si accompagna.',
+        'Ogni cancello racconta la casa che custodisce.',
+        'Battiamo il ferro da tre generazioni.',
+        "Su misura non è un'opzione: è il nostro modo di lavorare.",
+      ],
     },
     ctaScopriProdotti: 'Scopri i prodotti',
     features: [

@@ -25,6 +25,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: VINCOLO: la versione siciliana è bozza AI non validata; la validazione di un parlante nativo è bloccante per il lancio (Backlog).
 - 2026-08-02: `<title>` delle pagine restano in italiano in entrambe le lingue (SEO: una sola lingua indicizzata per ora).
 - 2026-08-02: H1 Home allineato al motto ufficiale ("Il ferro è il nostro mestiere.") come claim provvisorio, in attesa di conferma cliente.
+- 2026-08-02: Rotazione quotes hero (opzione B) con hook useRotator, 4 citazioni IT/SCN dalla bozza
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce

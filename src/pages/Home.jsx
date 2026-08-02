@@ -10,12 +10,27 @@ import Carousel from '../components/Carousel'
 import { prodotti } from '../data/prodotti'
 import { galleriaItems } from '../data/galleria'
 import useLanguage from '../i18n/useLanguage'
+import useRotator from '../hooks/useRotator'
 
 const REALIZZAZIONI_EAGER_COUNT = 4
 
+function HeroQuote({ quotes }) {
+  const { index, entered } = useRotator(quotes)
+  return (
+    <p
+      className={`min-h-[4.5rem] max-w-xl text-cream-200 transition-all duration-500 ease-out motion-reduce:transition-none sm:min-h-[3rem] ${
+        entered ? 'translate-x-0 opacity-100' : '-translate-x-6 opacity-0'
+      }`}
+    >
+      {quotes[index]}
+    </p>
+  )
+}
+
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const features = t('home.features')
+  const quotes = t('home.hero.quotes')
 
   return (
     <>
@@ -31,7 +46,7 @@ export default function Home() {
           <h1 className="max-w-2xl font-display text-4xl font-bold leading-tight sm:text-5xl">
             {t('home.hero.claim')}
           </h1>
-          <p className="max-w-xl text-cream-200">{t('home.hero.secondary')}</p>
+          <HeroQuote key={lang} quotes={quotes} />
           <div className="flex flex-wrap gap-4">
             <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
             <Button to="/prodotti" variant="outline">

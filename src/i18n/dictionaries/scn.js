@@ -34,8 +34,13 @@ export const scn = {
     hero: {
       eyebrow: 'Putìa Artigiana', // SCN da validare
       claim: 'U ferru è u nostru misteri.', // dalla bozza
-      secondary:
+      quotes: [
         'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di tri generazioni.', // dalla bozza
+        "U ferru non si cumanna: s'accumpagna.", // dalla bozza
+        'Ogni cancellu cunta a casa ca talìa.', // dalla bozza
+        'Vattemu u ferru di tri generazioni.', // dalla bozza
+        'Supra misura non è na scelta: è u nostru modu di travagghiari.', // dalla bozza
+      ],
     },
     ctaScopriProdotti: 'Talìa i prodotti', // dalla bozza
     features: [
