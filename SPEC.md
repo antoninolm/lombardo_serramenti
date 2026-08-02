@@ -14,6 +14,8 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-01: Aggiunti Google Fonts (Oswald+Barlow) e token palette scura/metallica (`@theme` in `index.css`) come anticipazione minima di stile; rifinitura completa (colori esatti, font, eventuale self-hosting) in Fase 6
 - 2026-08-01: Aggiunto `vercel.json` con rewrite SPA (tutte le route → `/index.html`), necessario perché il routing è lato client (React Router): senza rewrite, ricaricare la pagina (F5) su una route diversa da `/` restituisce 404 su Vercel
 - 2026-08-01: Test: Vitest + jsdom + React Testing Library come devDependencies (nessuna dipendenza runtime aggiunta); config `test` dentro `vite.config.js` esistente, niente file di config separato
+- 2026-08-02: Cambio requisito (cliente): la Galleria abbandona il filtro per categoria e diventa catalogo unico di tutte le foto con effetto scroll-reveal (fade + zoom-in), reference: pagina galleria di cardillo.it. Le categorie restano in uso solo in Prodotti e nel form Preventivo.
+- 2026-08-02: Hero Home: rotazione citazioni sul ferro ogni 6s, opzione B approvata — ruota SOLO la riga secondaria sotto il claim; claim e CTA fissi. Implementazione in task futuro dedicato.
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
@@ -67,3 +69,27 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - Click letterale su ogni voce del menu dal browser, da PC e da telefono reali: **NON VERIFICATO** — verificato in modo equivalente (navigazione diretta alle route + test automatici), ma il click umano sul menu e la prova su un telefono reale restano da fare in UAT
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
+
+## Fase 3a — Contratto
+
+### Cosa aspettarsi a fine fase
+- Galleria (/galleria) ristrutturata a catalogo unico: niente più filtro per categoria, tutte le foto reali dell'officina in un'unica griglia responsive (1 colonna mobile, 2 tablet, 3 desktop)
+- Ogni foto compare con un effetto reveal (dissolvenza + leggero zoom) quando entra nel viewport durante lo scroll, disattivato automaticamente se l'utente ha impostato "riduci movimento" nel sistema operativo
+- Home (/) con 3 foto reali al posto dei riquadri placeholder nella sezione "Dalle nostre realizzazioni"
+- Peso totale delle immagini caricate dalla pagina Galleria sotto ~2.5 MB
+- Nessuna funzione di categoria/filtro rimossa da Prodotti o dal form Preventivo (restano invariati)
+
+### Come testa Antonino (UAT, da browser)
+1. Apri /galleria da PC: scrolla lentamente e osserva le foto comparire una dopo l'altra con un effetto di dissolvenza/ingrandimento leggero, non tutte insieme
+2. Verifica che non ci sia più nessun filtro/pulsante per categoria in Galleria, solo il testo introduttivo e la griglia di foto
+3. Ripeti lo scroll da telefono: verifica che sia fluido (nessun scatto) e che le foto si carichino in tempi ragionevoli
+4. Apri la Home e controlla che le 3 foto nella sezione "Dalle nostre realizzazioni" siano foto vere dell'officina, non più riquadri grigi a righe
+5. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (routing invariato, hook useScrollReveal, griglia Galleria con 14 immagini)
+- Peso totale delle immagini `thumb` usate da Galleria sotto ~2.5 MB (`du -sh`)
+- Verifica browser headless: effetto reveal presente allo scroll, 14 immagini renderizzate, nessun errore console
+- Deploy Vercel "Ready" dopo il push finale
