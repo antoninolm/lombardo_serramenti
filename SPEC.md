@@ -34,9 +34,16 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 ## Backlog
 - Claim hero: motto ufficiale impostato come claim provvisorio; conferma definitiva del cliente in attesa (alternative: "Il ferro si piega alla tua idea" o altro)
 - Validazione della colonna SCN da parte di un parlante nativo della famiglia: NON bloccante per i deploy di lavoro, BLOCCANTE per il lancio ufficiale del sito al pubblico
-- Setup SSH GitHub
-- Invio reale form Preventivo via Resend (Vercel serverless function) — Fase 3, vedi CLAUDE.md
-- Integrare mappa reale (embed Google Maps) in Contatti — Fase 3, ora solo segnaposto
+- Setup SSH GitHub (opzionale, non bloccante: i push funzionano via HTTPS)
+- Alt text delle foto: rivedere/rifinire i testi descrittivi (accessibilità/SEO)
+- Recuperare/aggiungere una foto col padre (fondatore) in officina
+- Creare/collegare una scheda Google Business Profile per l'officina
+- Dati di contatto reali e mappa (embed Google Maps) in Contatti — indirizzo dell'officina ancora da fornire, ora solo segnaposto
+- Sezione "Dicono di noi" (recensioni/testimonianze clienti, selezione manuale) — da valutare
+- Prenotazione interventi online — da valutare
+- Lightbox per la Galleria — da valutare (le immagini `full/` sono già predisposte, vedi decisione Fase 3a)
+- Dominio custom (fine progetto) — sbloccherebbe anche un mittente email professionale su Resend (invece di onboarding@resend.dev)
+- Valutare rate limiting/captcha sul form Preventivo se arriva spam nonostante l'honeypot
 - Valutare `npm audit fix` per l'advisory su react-router (RSC Mode CSRF Bypass) — non applicabile a questo setup SPA senza data router, ma da rivalutare se si passa a `createBrowserRouter`
 
 ## Fase 2 — Contratto
