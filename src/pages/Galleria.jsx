@@ -17,7 +17,7 @@ export default function Galleria() {
         />
       </section>
 
-      <div className="mx-auto w-full max-w-[1400px] pb-16">
+      <div className="mx-auto mt-10 w-full max-w-[1400px] pb-16">
         <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
           {galleriaItems.map((item, index) => (
             <GalleryItem key={item.id} src={item.src} alt={item.alt} eager={index < EAGER_COUNT} />
