@@ -166,7 +166,8 @@ export const scn = {
       email: 'Email',
       orari: 'Orari', // SCN da validare
     },
-    mapCaption: '[mappa Google Maps — Fase 3]',
+    mapTitle: 'Mappa: Lombardo Serramenti, Viale Europa 44, Moio Alcantara', // SCN da validare
+    mapLink: 'Rapri in Google Maps →', // SCN da validare
     cta: {
       title: 'Prifirisci un pribintivu scrittu?', // SCN da validare
       description: 'Compila u modulu cu i dittagli du to pruggettu: ti arrispunnemu u primu chi si po’.', // SCN da validare

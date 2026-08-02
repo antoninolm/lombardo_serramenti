@@ -29,6 +29,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Form preventivo → api/preventivo.js (Vercel function) → Resend REST via fetch (zero dipendenze) → destinatario lombardoserramenti.contatti@gmail.com; free tier con mittente onboarding@resend.dev; honeypot anti-spam; segreto solo in env var RESEND_API_KEY (Vercel + .env locale)
 - 2026-08-02: Dati contatti reali inseriti (indirizzo Viale Europa 44 Moio Alcantara ME, orari), sostituiscono i placeholder di Fase 2. Telefono provvisorio, vedi voce Backlog dedicata.
 - 2026-08-02: Telefono inserito (366 547 2502) è PROVVISORIO/FAKE in attesa del numero reale dal cliente — sostituire appena disponibile in data/contatti.js (da cui deriva anche l'href "tel:" della CTA "Chiamaci" in Home)
+- 2026-08-02: Mappa Contatti sostituita con embed Google Maps reale (formato query senza API key) sulle coordinate dell'officina, con link alla scheda Google Business completa
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce

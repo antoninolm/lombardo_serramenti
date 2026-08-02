@@ -157,7 +157,8 @@ export const it = {
       email: 'Email',
       orari: 'Orari',
     },
-    mapCaption: '[mappa Google Maps — Fase 3]',
+    mapTitle: 'Mappa: Lombardo Serramenti, Viale Europa 44, Moio Alcantara',
+    mapLink: 'Apri in Google Maps →',
     cta: {
       title: 'Preferisci un preventivo scritto?',
       description: 'Compila il modulo con i dettagli del tuo progetto: ti rispondiamo il prima possibile.',
