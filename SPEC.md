@@ -16,6 +16,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-01: Test: Vitest + jsdom + React Testing Library come devDependencies (nessuna dipendenza runtime aggiunta); config `test` dentro `vite.config.js` esistente, niente file di config separato
 - 2026-08-02: Cambio requisito (cliente): la Galleria abbandona il filtro per categoria e diventa catalogo unico di tutte le foto con effetto scroll-reveal (fade + zoom-in), reference: pagina galleria di cardillo.it. Le categorie restano in uso solo in Prodotti e nel form Preventivo.
 - 2026-08-02: Hero Home: rotazione citazioni sul ferro ogni 6s, opzione B approvata — ruota SOLO la riga secondaria sotto il claim; claim e CTA fissi. Implementazione in task futuro dedicato.
+- 2026-08-02: `sharp` aggiunto come devDependency (unica nuova dipendenza Fase 3a), usato solo dallo script una tantum `scripts/optimize-galleria-images.mjs` per generare da `materiali/foto/` (14 JPEG originali, ~3.0 MB totali, rinominato il refuso `galleri3.jpeg` → `galleria3.jpeg`) le versioni WebP ottimizzate in `src/assets/galleria/`: `full/` (max 1600px, qualità 82, non usata in questa fase, predisposta per eventuale lightbox futuro) e `thumb/` (max 800px, qualità 78, ~1.0 MB totali per 14 foto — quella effettivamente caricata da Galleria e Home). Le foto originali restano invariate e sono state aggiunte a git (come già `materiali/brand/`).
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
