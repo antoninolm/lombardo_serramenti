@@ -1,7 +1,10 @@
 import Placeholder from './Placeholder'
 import Button from './Button'
+import useLanguage from '../i18n/useLanguage'
 
 export default function ZigZagBlock({ slug, title, description, imageAlt, reverse = false }) {
+  const { t } = useLanguage()
+
   return (
     <div
       id={slug}
@@ -12,7 +15,7 @@ export default function ZigZagBlock({ slug, title, description, imageAlt, revers
         <h2 className="font-display text-2xl font-bold sm:text-3xl">{title}</h2>
         <p className="mt-3 text-cream-200">{description}</p>
         <Button to="/preventivo" variant="outline" className="mt-6">
-          Richiedi preventivo →
+          {t('prodotti.ctaBottone')}
         </Button>
       </div>
     </div>

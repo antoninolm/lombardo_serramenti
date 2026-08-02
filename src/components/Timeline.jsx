@@ -1,27 +1,9 @@
-const milestones = [
-  {
-    year: '1968',
-    title: 'Fondazione',
-    text: 'Nasce l’officina, tra le prime della zona a lavorare il ferro battuto su misura per privati e imprese.',
-  },
-  {
-    year: '1987',
-    title: 'Seconda generazione',
-    text: 'L’attività passa ai figli del fondatore, che introducono le prime lavorazioni in acciaio zincato e inox.',
-  },
-  {
-    year: '2005',
-    title: 'Nuova sede',
-    text: 'Trasferimento in un’officina più ampia, con nuovi macchinari per portoni e serrande su misura.',
-  },
-  {
-    year: 'Oggi',
-    title: 'Terza generazione',
-    text: 'L’officina continua a crescere restando fedele al lavoro artigianale, un pezzo alla volta.',
-  },
-]
+import useLanguage from '../i18n/useLanguage'
 
 export default function Timeline() {
+  const { t } = useLanguage()
+  const milestones = t('chiSiamo.timeline')
+
   return (
     <div className="divide-y divide-iron-500 border-t border-iron-500">
       {milestones.map((milestone) => (

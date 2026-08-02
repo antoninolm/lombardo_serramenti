@@ -2,6 +2,7 @@ import { useState } from 'react'
 import FormField from './FormField'
 import Button from '../Button'
 import { prodotti } from '../../data/prodotti'
+import useLanguage from '../../i18n/useLanguage'
 
 const initialForm = {
   nome: '',
@@ -15,22 +16,26 @@ const initialForm = {
 const telefonoRegex = /^[+\d][\d\s()-]{6,}$/
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function validate(form) {
+function validate(form, t) {
   const errors = {}
-  if (!form.nome.trim()) errors.nome = 'Inserisci il tuo nome e cognome.'
-  if (!telefonoRegex.test(form.telefono.trim())) errors.telefono = 'Inserisci un numero di telefono valido.'
-  if (!emailRegex.test(form.email.trim())) errors.email = 'Inserisci un indirizzo email valido.'
-  if (!form.tipoLavoro) errors.tipoLavoro = 'Seleziona il tipo di lavoro.'
-  if (!form.privacy) errors.privacy = 'Devi accettare il trattamento dei dati per inviare la richiesta.'
+  if (!form.nome.trim()) errors.nome = t('preventivo.form.errors.nome')
+  if (!telefonoRegex.test(form.telefono.trim())) errors.telefono = t('preventivo.form.errors.telefono')
+  if (!emailRegex.test(form.email.trim())) errors.email = t('preventivo.form.errors.email')
+  if (!form.tipoLavoro) errors.tipoLavoro = t('preventivo.form.errors.tipoLavoro')
+  if (!form.privacy) errors.privacy = t('preventivo.form.errors.privacy')
   return errors
 }
 
-const tipiLavoro = [...prodotti.map((p) => ({ value: p.slug, label: p.title })), { value: 'altro', label: 'Altro' }]
-
 export default function PreventivoForm({ onSubmitted }) {
+  const { t } = useLanguage()
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
+
+  const tipiLavoro = [
+    ...prodotti.map((p) => ({ value: p.slug, label: t(`prodotti.${p.slug}.title`) })),
+    { value: 'altro', label: t('preventivo.form.altro') },
+  ]
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target
@@ -39,7 +44,7 @@ export default function PreventivoForm({ onSubmitted }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const validationErrors = validate(form)
+    const validationErrors = validate(form, t)
     setErrors(validationErrors)
     if (Object.keys(validationErrors).length > 0) return
 
@@ -54,7 +59,7 @@ export default function PreventivoForm({ onSubmitted }) {
 
   return (
     <form noValidate onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
-      <FormField label="Nome e Cognome" error={errors.nome}>
+      <FormField label={t('preventivo.form.nome')} error={errors.nome}>
         <input
           type="text"
           name="nome"
@@ -65,7 +70,7 @@ export default function PreventivoForm({ onSubmitted }) {
       </FormField>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <FormField label="Telefono" error={errors.telefono}>
+        <FormField label={t('preventivo.form.telefono')} error={errors.telefono}>
           <input
             type="tel"
             name="telefono"
@@ -75,7 +80,7 @@ export default function PreventivoForm({ onSubmitted }) {
           />
         </FormField>
 
-        <FormField label="Email" error={errors.email}>
+        <FormField label={t('preventivo.form.email')} error={errors.email}>
           <input
             type="email"
             name="email"
@@ -86,14 +91,14 @@ export default function PreventivoForm({ onSubmitted }) {
         </FormField>
       </div>
 
-      <FormField label="Tipo di lavoro" error={errors.tipoLavoro}>
+      <FormField label={t('preventivo.form.tipoLavoro')} error={errors.tipoLavoro}>
         <select
           name="tipoLavoro"
           value={form.tipoLavoro}
           onChange={handleChange}
           className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
         >
-          <option value="">Seleziona…</option>
+          <option value="">{t('preventivo.form.tipoLavoroPlaceholder')}</option>
           {tipiLavoro.map((tipo) => (
             <option key={tipo.value} value={tipo.value}>
               {tipo.label}
@@ -102,7 +107,7 @@ export default function PreventivoForm({ onSubmitted }) {
         </select>
       </FormField>
 
-      <FormField label="Descrizione del lavoro (facoltativo)">
+      <FormField label={t('preventivo.form.descrizione')}>
         <textarea
           name="descrizione"
           value={form.descrizione}
@@ -120,7 +125,7 @@ export default function PreventivoForm({ onSubmitted }) {
           onChange={handleChange}
           className="mt-1"
         />
-        <span>Accetto il trattamento dei dati personali per essere ricontattato/a.</span>
+        <span>{t('preventivo.form.privacy')}</span>
       </label>
       {errors.privacy && (
         <p className="-mt-4 text-xs text-red-400" role="alert">
@@ -129,7 +134,7 @@ export default function PreventivoForm({ onSubmitted }) {
       )}
 
       <Button type="submit" disabled={submitting} className="self-start disabled:opacity-60">
-        {submitting ? 'Invio in corso…' : 'Invia Richiesta'}
+        {submitting ? t('preventivo.form.submitting') : t('preventivo.form.submit')}
       </Button>
     </form>
   )

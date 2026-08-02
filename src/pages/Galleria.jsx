@@ -1,19 +1,22 @@
 import SectionHeading from '../components/SectionHeading'
 import GalleryItem from '../components/GalleryItem'
 import { galleriaItems } from '../data/galleria'
+import useLanguage from '../i18n/useLanguage'
 
 const EAGER_COUNT = 4
 
 export default function Galleria() {
+  const { t } = useLanguage()
+
   return (
     <>
       <title>Galleria — Lombardo Serramenti</title>
 
       <section className="mx-auto max-w-6xl px-4 pt-8 pb-0 sm:px-6">
         <SectionHeading
-          eyebrow="Galleria"
-          title="Le realizzazioni dell'officina."
-          description="Cancelli, ringhiere, portoni e opere su misura: una selezione dei lavori usciti dalla nostra officina. Ogni pezzo è pensato e realizzato a mano, su misura per lo spazio che lo ospita."
+          eyebrow={t('nav.galleria')}
+          title={t('galleria.title')}
+          description={t('galleria.description')}
         />
       </section>
 

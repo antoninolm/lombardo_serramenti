@@ -108,5 +108,94 @@ export const scn = {
       title: 'Travagghi supra Misura', // dalla bozza
       description: 'Scali, pergulati, insigni, strutturi in ferru e acciaru pi pruggetti spiciali di privati e aziendi.', // SCN da validare
     },
+    pageTitle: 'I nostri travagghi.', // SCN da validare
+    pageDescription:
+      'Ogni travagghiu è fattu supra misura, dû disignu â posa in opira. Eccu i categorii principali di prodotti chi facemu.', // SCN da validare
+    ctaBottone: 'Addumanna u pribintivu →', // validare: "pribintivu"/"previntivu"
+  },
+  chiSiamo: {
+    title: 'Tri generazioni, un solu misteri.', // SCN da validare
+    subtitle: 'U ferru è na cosa di famigghia.', // dalla bozza
+    body: [
+      'Semu i frati Lombardo, e u ferru u rispiràmmu prima ancora di travagghiàrilu. Nostru patri ni crisciu nna putìa: n’insignàu l’arti du ferru comu ci l’avìanu ’nsignata a iddu — cu pacenzia, pricisioni e rispettu pu materiali. N’insignàu ca un cancellu non si judica quannu u cunsigni, ma doppu vint’anni di suli, acqua e salsedini.',
+      'Oggi ’nsemi e tecnichi di sempri usamu attrezzi muderni, ma u modu non canciàu: sopralluogu, disegnu, realizzazioni e posa i sicutamu nuàutri, du primu incontru all’urtimu bulluni. Travagghiamu pi privati e aziendi, un pezzu a vota, supra misura. Picchì pi nuàutri u ferru non è sulu un misteri: è na cosa di famigghia.',
+    ], // dalla bozza (corpo completo)
+    storiaTitle: 'A nostra storia', // SCN da validare
+    timeline: [
+      {
+        year: '1968',
+        title: 'Fundazioni', // SCN da validare
+        text: 'Nasce a putìa, tra i primi da zona a travagghiari u ferru battutu supra misura pi privati e aziendi.', // SCN da validare
+      },
+      {
+        year: '1987',
+        title: 'Secunna generazioni', // SCN da validare
+        text: 'L’attività passa ê figghi du fundaturi, chi ’ntroducinu i primi travagghi in acciaru zincatu e inox.', // SCN da validare
+      },
+      {
+        year: '2005',
+        title: 'Nova sede', // SCN da validare
+        text: 'Trasfirimentu ’n una putìa cchiù ampia, cu novi machinari pi purtuna e serrandi supra misura.', // SCN da validare
+      },
+      {
+        year: 'Oggi',
+        title: 'Terza generazioni', // SCN da validare
+        text: 'A putìa cuntinua a crisciri restannu fedele ô travagghiu artigianali, un pezzu â vota.', // SCN da validare
+      },
+    ],
+    cta: {
+      title: 'Voi canùsciri a nuàutri di pessuna?', // SCN da validare
+      description: 'Veni a truvàrini nna putìa o cuntàcci u to pruggettu: ti priparamu un pribintivu supra misura.', // SCN da validare
+    },
+  },
+  galleria: {
+    title: 'I travagghi da putìa.', // SCN da validare
+    description:
+      'Cancelli, ringheri, purtuna e travagghi supra misura: na scelta di travagghi nisciuti dâ nostra putìa. Ogni pezzu è pinsatu e fattu a manu, supra misura pû spaziu chi l’ospita.', // SCN da validare
+  },
+  contatti: {
+    title: 'Veni a truvàrini nna putìa.', // SCN da validare
+    cards: {
+      indirizzo: 'Indirizzu', // SCN da validare
+      telefono: 'Telefunu', // SCN da validare
+      email: 'Email',
+      orari: 'Orari', // SCN da validare
+    },
+    mapCaption: '[mappa Google Maps — Fase 3]',
+    cta: {
+      title: 'Prifirisci un pribintivu scrittu?', // SCN da validare
+      description: 'Compila u modulu cu i dittagli du to pruggettu: ti arrispunnemu u primu chi si po’.', // SCN da validare
+    },
+  },
+  preventivo: {
+    pageTitle: 'Cuntaci u to pruggettu.', // SCN da validare
+    pageDescription:
+      'Compila u modulu cu i dittagli du travagghiu: ti ricuntattamu cu un pribintivu supra misura, senza ’mpegnu.', // SCN da validare
+    form: {
+      nome: 'Nomu e Cugnomu', // SCN da validare
+      telefono: 'Telefunu', // SCN da validare
+      email: 'Email',
+      tipoLavoro: 'Tipu di travagghiu', // SCN da validare
+      tipoLavoroPlaceholder: 'Scegli…', // SCN da validare
+      altro: 'Àutru', // SCN da validare
+      descrizione: 'Discrizzioni du travagghiu (facoltativu)', // SCN da validare
+      privacy: 'Accettu u trattamentu di li dati pirsunali pi essiri ricuntattatu/a.', // SCN da validare
+      submit: 'Manna Richiesta', // SCN da validare
+      submitting: 'Sta ’nviannu…', // SCN da validare
+      errors: {
+        nome: 'Metti u to nomu e cugnomu.', // SCN da validare
+        telefono: 'Metti un nummaru di telefunu bonu.', // SCN da validare
+        email: 'Metti un indirizzu email bonu.', // SCN da validare
+        tipoLavoro: 'Scegli u tipu di travagghiu.', // SCN da validare
+        privacy: 'Aviti ad accettari u trattamentu di li dati pi mannari a richiesta.', // SCN da validare
+      },
+    },
+    success: {
+      title: 'Richiesta mannata, {{nome}}!', // SCN da validare
+      titleFallbackName: 'grazii', // SCN da validare
+      body: 'Ricivemmu a to richiesta di pribintivu. Ti ricuntattamu u primu chi si po’.', // SCN da validare
+      note: '(Simulazioni — Fasi 2: nudda email fu mannata daveru.)', // SCN da validare
+      resetButton: 'Compila n’autra richiesta', // SCN da validare
+    },
   },
 }
