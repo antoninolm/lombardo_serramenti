@@ -26,6 +26,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: `<title>` delle pagine restano in italiano in entrambe le lingue (SEO: una sola lingua indicizzata per ora).
 - 2026-08-02: H1 Home allineato al motto ufficiale ("Il ferro è il nostro mestiere.") come claim provvisorio, in attesa di conferma cliente.
 - 2026-08-02: Rotazione quotes hero (opzione B) con hook useRotator, 4 citazioni IT/SCN dalla bozza
+- 2026-08-02: Form preventivo → api/preventivo.js (Vercel function) → Resend REST via fetch (zero dipendenze) → destinatario lombardoserramenti.contatti@gmail.com; free tier con mittente onboarding@resend.dev; honeypot anti-spam; segreto solo in env var RESEND_API_KEY (Vercel + .env locale)
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
