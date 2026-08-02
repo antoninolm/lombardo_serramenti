@@ -27,6 +27,8 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: H1 Home allineato al motto ufficiale ("Il ferro è il nostro mestiere.") come claim provvisorio, in attesa di conferma cliente.
 - 2026-08-02: Rotazione quotes hero (opzione B) con hook useRotator, 4 citazioni IT/SCN dalla bozza
 - 2026-08-02: Form preventivo → api/preventivo.js (Vercel function) → Resend REST via fetch (zero dipendenze) → destinatario lombardoserramenti.contatti@gmail.com; free tier con mittente onboarding@resend.dev; honeypot anti-spam; segreto solo in env var RESEND_API_KEY (Vercel + .env locale)
+- 2026-08-02: Dati contatti reali inseriti (indirizzo Viale Europa 44 Moio Alcantara ME, orari), sostituiscono i placeholder di Fase 2. Telefono provvisorio, vedi voce Backlog dedicata.
+- 2026-08-02: Telefono inserito (366 547 2502) è PROVVISORIO/FAKE in attesa del numero reale dal cliente — sostituire appena disponibile in data/contatti.js (da cui deriva anche l'href "tel:" della CTA "Chiamaci" in Home)
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
@@ -38,7 +40,7 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - Alt text delle foto: rivedere/rifinire i testi descrittivi (accessibilità/SEO)
 - Recuperare/aggiungere una foto col padre (fondatore) in officina
 - Creare/collegare una scheda Google Business Profile per l'officina
-- Dati di contatto reali e mappa (embed Google Maps) in Contatti — indirizzo dell'officina ancora da fornire, ora solo segnaposto
+- Numero di telefono provvisorio/fake (366 547 2502) in uso in data/contatti.js e nella CTA "Chiamaci": sostituire con il numero reale dell'officina appena disponibile
 - Sezione "Dicono di noi" (recensioni/testimonianze clienti, selezione manuale) — da valutare
 - Prenotazione interventi online — da valutare
 - Lightbox per la Galleria — da valutare (le immagini `full/` sono già predisposte, vedi decisione Fase 3a)
@@ -206,3 +208,32 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Deploy Vercel "Ready" dopo ogni push della fase: **PASS** — verificato via GitHub commit status API su tutti i commit della fase (contratto, quotes hero, serverless function, collegamento form, sync backlog), tutti "success"
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) e `curl` diretto sulla produzione come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana della rotazione delle quote e, soprattutto, la conferma dell'arrivo reale dell'email nella casella Gmail, che nessun controllo automatico può sostituire.
+
+## Fase 3e — Contratto
+
+### Cosa aspettarsi a fine fase
+- Contatti (/contatti) e footer mostrano i dati reali dell'officina: indirizzo Viale Europa 44, 98030 Moio Alcantara (ME); orari Lun–Ven 7:30–13:00/14:00–18:00, Sab 9:00–12:30, Dom chiuso
+- Il numero di telefono mostrato (366 547 2502) è **provvisorio/fake**, in attesa del numero reale dal cliente (vedi Backlog); è comunque un link `tel:` funzionante da mobile
+- La CTA "Chiamaci" in Home punta allo stesso numero (derivato da `data/contatti.js`, non più duplicato)
+- La mappa in Contatti non è più un segnaposto grigio: è un embed Google Maps reale centrato sulle coordinate dell'officina, con un link "Apri in Google Maps →" che porta alla scheda Google Business completa (recensioni incluse)
+- Tutto tradotto/coerente in italiano e siciliano
+
+### Come testa Antonino (UAT, da browser)
+1. Apri /contatti da PC: verifica che indirizzo, telefono e orari siano **esatti** (un refuso su questi dati è un problema serio per i clienti veri)
+2. Verifica che la mappa mostri il punto giusto (Viale Europa 44, Moio Alcantara) e non un placeholder grigio
+3. Clicca "Apri in Google Maps →": deve aprirsi la scheda Google Business dell'officina in una nuova scheda
+4. Dal telefono, tocca il numero di telefono in Contatti e/o il pulsante "Chiamaci" in Home: verifica che componga la chiamata al numero mostrato (366 547 2502 — **numero provvisorio**, non ancora quello reale dell'officina)
+5. Ripeti i punti 1-2 in siciliano (toggle SIC)
+6. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+7. **Importante**: il numero di telefono attuale è FAKE/PROVVISORIO — appena hai il numero reale dell'officina, comunicalo per l'aggiornamento
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (Contatti con dati reali, mappa embed, link Maps, entrambe le lingue)
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: Contatti mostra dati reali, iframe mappa carica, link Maps esterno corretto, CTA "Chiamaci" in Home punta al numero vero, in entrambe le lingue, desktop + mobile
+- Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura
+_Da compilare a chiusura fase (Task 3)._

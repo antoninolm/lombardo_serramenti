@@ -9,6 +9,7 @@ import CtaBanner from '../components/CtaBanner'
 import Carousel from '../components/Carousel'
 import { prodotti } from '../data/prodotti'
 import { galleriaItems } from '../data/galleria'
+import { contatti } from '../data/contatti'
 import useLanguage from '../i18n/useLanguage'
 import useRotator from '../hooks/useRotator'
 
@@ -122,7 +123,7 @@ export default function Home() {
           title={t('home.ctaFinale.title')}
           description={t('home.ctaFinale.description')}
           primary={{ to: '/preventivo', label: t('common.richiediPreventivo') }}
-          secondary={{ href: 'tel:+390000000000', label: t('common.chiamaci') }}
+          secondary={{ href: `tel:${contatti.telefono.replace(/\s/g, '')}`, label: t('common.chiamaci') }}
         />
       </section>
     </>

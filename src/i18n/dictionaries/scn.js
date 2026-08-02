@@ -25,8 +25,8 @@ export const scn = {
     richiediPreventivo: "Addumanna u pribintivu", // validare: "pribintivu"/"previntivu"
     chiamaci: 'Chiamàtini',
     orari: [
-      'Luni – Venniri: 8:00 – 18:00', // SCN da validare
-      'Sabbatu: 8:00 – 12:30', // SCN da validare
+      'Luni–Venniri: 7:30–13:00, 14:00–18:00', // SCN da validare
+      'Sabbatu: 9:00–12:30', // SCN da validare
       'Duminica: chiusu', // SCN da validare
     ],
   },

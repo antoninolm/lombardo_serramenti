@@ -1,5 +1,5 @@
 export const contatti = {
-  indirizzo: ['Via dell’Officina, 12', '90100 Palermo (PA)'],
-  telefono: '+39 000 000 0000',
-  email: 'info@lombardoserramenti.it',
+  indirizzo: ['Viale Europa 44', '98030 Moio Alcantara (ME)'],
+  telefono: '+39 366 547 2502',
+  email: 'lombardoserramenti.contatti@gmail.com',
 }

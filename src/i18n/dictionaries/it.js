@@ -19,7 +19,7 @@ export const it = {
   common: {
     richiediPreventivo: 'Richiedi Preventivo',
     chiamaci: 'Chiamaci',
-    orari: ['Lun – Ven: 8:00 – 18:00', 'Sab: 8:00 – 12:30', 'Dom: chiuso'],
+    orari: ['Lun–Ven: 7:30–13:00, 14:00–18:00', 'Sab: 9:00–12:30', 'Dom: chiuso'],
   },
   home: {
     hero: {
