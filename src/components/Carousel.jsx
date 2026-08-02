@@ -8,7 +8,13 @@ function prefersReducedMotion() {
   )
 }
 
-export default function Carousel({ items, renderItem, ariaLabel }) {
+export default function Carousel({
+  items,
+  renderItem,
+  ariaLabel,
+  prevLabel = 'Foto precedente',
+  nextLabel = 'Foto successiva',
+}) {
   const scrollerRef = useRef(null)
   const [canScrollPrev, setCanScrollPrev] = useState(false)
   const [canScrollNext, setCanScrollNext] = useState(true)
@@ -31,7 +37,7 @@ export default function Carousel({ items, renderItem, ariaLabel }) {
     <div className="relative">
       <button
         type="button"
-        aria-label="Foto precedente"
+        aria-label={prevLabel}
         onClick={() => scroll(-1)}
         disabled={!canScrollPrev}
         className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-iron-900/80 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"
@@ -55,7 +61,7 @@ export default function Carousel({ items, renderItem, ariaLabel }) {
 
       <button
         type="button"
-        aria-label="Foto successiva"
+        aria-label={nextLabel}
         onClick={() => scroll(1)}
         disabled={!canScrollNext}
         className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-iron-900/80 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"

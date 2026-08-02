@@ -9,29 +9,14 @@ import CtaBanner from '../components/CtaBanner'
 import Carousel from '../components/Carousel'
 import { prodotti } from '../data/prodotti'
 import { galleriaItems } from '../data/galleria'
+import useLanguage from '../i18n/useLanguage'
 
 const REALIZZAZIONI_EAGER_COUNT = 4
 
-const features = [
-  {
-    title: 'Lavorazione artigianale',
-    description: 'Ogni pezzo è disegnato e lavorato a mano in officina, non assemblato da componenti standard.',
-  },
-  {
-    title: 'Materiali di qualità',
-    description: 'Ferro battuto, acciaio zincato e inox selezionati per resistere nel tempo alle intemperie.',
-  },
-  {
-    title: 'Su misura per te',
-    description: 'Sopralluogo, disegno e realizzazione calibrati sulle misure e lo stile della tua casa.',
-  },
-  {
-    title: 'Assistenza nel tempo',
-    description: 'Manutenzione e riparazioni anche a distanza di anni dall’installazione.',
-  },
-]
-
 export default function Home() {
+  const { t } = useLanguage()
+  const features = t('home.features')
+
   return (
     <>
       <title>Lombardo Serramenti — Il ferro è il nostro mestiere</title>
@@ -41,26 +26,23 @@ export default function Home() {
         <div className="absolute inset-0 bg-iron-900/70" aria-hidden="true" />
         <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-28 sm:px-6">
           <span className="font-display text-sm font-semibold uppercase tracking-widest text-ember-500">
-            Officina Artigiana
+            {t('home.hero.eyebrow')}
           </span>
           <h1 className="max-w-2xl font-display text-4xl font-bold leading-tight sm:text-5xl">
-            Il ferro si piega alla tua idea.
+            {t('home.hero.claim')}
           </h1>
-          <p className="max-w-xl text-cream-200">
-            Cancelli, ringhiere, portoni e opere su misura, disegnate e realizzate a mano dalla nostra
-            officina. Il ferro è il nostro mestiere.
-          </p>
+          <p className="max-w-xl text-cream-200">{t('home.hero.secondary')}</p>
           <div className="flex flex-wrap gap-4">
-            <Button to="/preventivo">Richiedi Preventivo</Button>
+            <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
             <Button to="/prodotti" variant="outline">
-              Scopri i prodotti
+              {t('home.ctaScopriProdotti')}
             </Button>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <SectionHeading eyebrow="Perché scegliere noi" title="Un mestiere, tre generazioni." />
+        <SectionHeading eyebrow={t('home.perche.eyebrow')} title={t('home.perche.title')} />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => (
             <FeatureCard key={feature.title} {...feature} />
@@ -70,17 +52,22 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <SectionHeading
-          eyebrow="Prodotti"
-          title="Le nostre lavorazioni"
+          eyebrow={t('home.prodottiSection.eyebrow')}
+          title={t('home.prodottiSection.title')}
           action={
             <Link to="/prodotti" className="font-display text-sm font-semibold text-ember-500 hover:underline">
-              Vedi tutti i prodotti →
+              {t('home.prodottiSection.link')}
             </Link>
           }
         />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {prodotti.map((categoria) => (
-            <CategoryCard key={categoria.slug} {...categoria} />
+            <CategoryCard
+              key={categoria.slug}
+              slug={categoria.slug}
+              imageAlt={categoria.imageAlt}
+              title={t(`prodotti.${categoria.slug}.title`)}
+            />
           ))}
         </div>
       </section>
@@ -89,18 +76,20 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <SectionHeading
-          eyebrow="Galleria"
-          title="Dalle nostre realizzazioni"
+          eyebrow={t('home.galleria.eyebrow')}
+          title={t('home.galleria.title')}
           action={
             <Link to="/galleria" className="font-display text-sm font-semibold text-ember-500 hover:underline">
-              Galleria completa →
+              {t('home.galleria.link')}
             </Link>
           }
         />
         <div className="mt-8">
           <Carousel
             items={galleriaItems}
-            ariaLabel="Carosello realizzazioni"
+            ariaLabel={t('home.galleria.carouselAriaLabel')}
+            prevLabel={t('home.galleria.prev')}
+            nextLabel={t('home.galleria.next')}
             renderItem={(item, index) => (
               <img
                 src={item.src}
@@ -115,10 +104,10 @@ export default function Home() {
 
       <section className="pb-20">
         <CtaBanner
-          title="Hai un progetto in mente?"
-          description="Raccontaci il tuo progetto: ti rispondiamo con un preventivo su misura, senza impegno."
-          primary={{ to: '/preventivo', label: 'Richiedi Preventivo' }}
-          secondary={{ href: 'tel:+390000000000', label: 'Chiamaci' }}
+          title={t('home.ctaFinale.title')}
+          description={t('home.ctaFinale.description')}
+          primary={{ to: '/preventivo', label: t('common.richiediPreventivo') }}
+          secondary={{ href: 'tel:+390000000000', label: t('common.chiamaci') }}
         />
       </section>
     </>

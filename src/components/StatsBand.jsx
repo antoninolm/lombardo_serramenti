@@ -1,11 +1,9 @@
-const stats = [
-  { value: '55+', label: 'Anni di esperienza' },
-  { value: '1.200+', label: 'Lavori realizzati' },
-  { value: '3', label: 'Generazioni in officina' },
-  { value: '100%', label: 'Lavorazioni artigianali' },
-]
+import useLanguage from '../i18n/useLanguage'
 
 export default function StatsBand() {
+  const { t } = useLanguage()
+  const stats = t('home.stats')
+
   return (
     <div className="border-y border-iron-500 bg-iron-800">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-12 text-center sm:px-6 lg:grid-cols-4">
