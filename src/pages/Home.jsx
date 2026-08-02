@@ -7,6 +7,9 @@ import CategoryCard from '../components/CategoryCard'
 import StatsBand from '../components/StatsBand'
 import CtaBanner from '../components/CtaBanner'
 import { prodotti } from '../data/prodotti'
+import realizzazione1 from '../assets/galleria/thumb/galleria9.webp'
+import realizzazione2 from '../assets/galleria/thumb/galleria10.webp'
+import realizzazione3 from '../assets/galleria/thumb/galleria12.webp'
 
 const features = [
   {
@@ -28,9 +31,9 @@ const features = [
 ]
 
 const realizzazioni = [
-  { alt: 'Cancello in ferro battuto appena installato' },
-  { alt: 'Ringhiera per scala interna in acciaio' },
-  { alt: 'Portone sezionale per garage' },
+  { alt: 'Scala esterna con ringhiera in ferro zincato', src: realizzazione1 },
+  { alt: 'Ringhiera per scala interna in acciaio inox', src: realizzazione2 },
+  { alt: 'Cappa camino su misura in lamiera di ferro', src: realizzazione3 },
 ]
 
 export default function Home() {
@@ -101,7 +104,13 @@ export default function Home() {
         />
         <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {realizzazioni.map((foto) => (
-            <Placeholder key={foto.alt} alt={foto.alt} ratio="4 / 3" />
+            <img
+              key={foto.src}
+              src={foto.src}
+              alt={foto.alt}
+              loading="lazy"
+              className="aspect-[4/3] w-full rounded-lg object-cover"
+            />
           ))}
         </div>
       </section>
