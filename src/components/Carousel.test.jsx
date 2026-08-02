@@ -49,4 +49,41 @@ describe('Carousel', () => {
     renderCarousel()
     expect(screen.getByRole('button', { name: 'Foto precedente' })).toBeDisabled()
   })
+
+  it('nasconde la scrollbar del contenitore scrollabile', () => {
+    renderCarousel()
+    const region = screen.getByRole('region', { name: 'Carosello test' })
+    expect(region.className).toContain('scrollbar-hide')
+  })
+
+  it('la freccia precedente si abilita e chiama scrollBy con offset negativo dopo lo scroll', () => {
+    const scrollBySpy = vi.fn()
+    Element.prototype.scrollBy = scrollBySpy
+
+    renderCarousel()
+    const region = screen.getByRole('region', { name: 'Carosello test' })
+    Object.defineProperty(region, 'scrollWidth', { configurable: true, value: 1000 })
+    Object.defineProperty(region, 'clientWidth', { configurable: true, value: 400 })
+    Object.defineProperty(region, 'scrollLeft', { configurable: true, value: 100 })
+    fireEvent.scroll(region)
+
+    const prevButton = screen.getByRole('button', { name: 'Foto precedente' })
+    expect(prevButton).toBeEnabled()
+
+    fireEvent.click(prevButton)
+
+    expect(scrollBySpy).toHaveBeenCalledTimes(1)
+    expect(scrollBySpy.mock.calls[0][0].left).toBeLessThan(0)
+  })
+
+  it('la freccia successiva si disabilita quando si raggiunge la fine', () => {
+    renderCarousel()
+    const region = screen.getByRole('region', { name: 'Carosello test' })
+    Object.defineProperty(region, 'scrollWidth', { configurable: true, value: 1000 })
+    Object.defineProperty(region, 'clientWidth', { configurable: true, value: 400 })
+    Object.defineProperty(region, 'scrollLeft', { configurable: true, value: 600 })
+    fireEvent.scroll(region)
+
+    expect(screen.getByRole('button', { name: 'Foto successiva' })).toBeDisabled()
+  })
 })

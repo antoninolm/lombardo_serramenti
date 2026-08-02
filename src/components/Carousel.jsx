@@ -44,7 +44,7 @@ export default function Carousel({ items, renderItem, ariaLabel }) {
         role="region"
         aria-label={ariaLabel}
         onScroll={(e) => updateScrollState(e.currentTarget)}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
+        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
       >
         {items.map((item, index) => (
           <div key={item.id} data-carousel-card className="shrink-0 basis-[62%] snap-start sm:basis-[27%]">
