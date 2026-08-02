@@ -154,3 +154,33 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Deploy Vercel "Ready" dopo il push finale: **PASS** — verificato via GitHub commit status API su tutti i commit della fase (contratto/infrastruttura, toggle navbar, testi Home, testi pagine restanti), tutti "success"
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana dei testi in siciliano, che nessun controllo automatico può sostituire.
+
+## Fase 3b/3d — Contratto
+
+### Cosa aspettarsi a fine fase
+- Home (/): la riga sotto il claim non è più fissa, ma ruota ogni 6 secondi tra 5 frasi sul ferro/officina (la riga attuale più 4 nuove citazioni), con una piccola transizione di scorrimento; claim e pulsanti restano fissi
+- Chi ha impostato "riduci movimento" nel proprio dispositivo vede solo la prima frase, ferma, senza rotazione
+- La rotazione funziona sia in italiano sia in siciliano, seguendo il toggle lingua
+- Il form Richiedi Preventivo invia davvero un'email quando compilato correttamente: arriva alla casella `lombardoserramenti.contatti@gmail.com`, con "Rispondi a" impostato sull'indirizzo email inserito dal cliente
+- Se l'invio fallisce (problema di rete o del server), il form mostra un messaggio di errore chiaro e i dati inseriti restano compilati, pronti per un nuovo tentativo
+- La pagina di conferma dopo l'invio non menziona più "Simulazione — Fase 2": è una conferma reale
+- La mappa in Contatti resta un segnaposto (l'indirizzo dell'officina non è ancora stato fornito) — nessuna modifica in questa fase
+- Il Backlog di SPEC.md riflette lo stato reale del progetto
+
+### Come testa Antonino (UAT, da browser)
+1. Apri la Home e osserva la riga sotto il titolo per almeno 30 secondi: deve cambiare frase circa ogni 6 secondi, con un piccolo effetto di scorrimento, senza che il resto della pagina si sposti
+2. Cambia lingua (ITA/SIC) e verifica che la rotazione continui a funzionare, con le frasi tradotte
+3. Se il tuo telefono/PC ha l'opzione "riduci movimento" nelle impostazioni di accessibilità, attivala e verifica che la riga resti ferma sulla prima frase
+4. Vai su Richiedi Preventivo, compila il form con dati reali (puoi scrivere "Test Fase 3b" come nome) e invia: deve comparire la conferma, senza più la scritta "Simulazione"
+5. **Controlla la casella Gmail `lombardoserramenti.contatti@gmail.com` (anche la cartella Spam)**: deve essere arrivata un'email con oggetto "Richiesta preventivo — Test Fase 3b (...)" e i dati inseriti
+6. Prova a rispondere a quell'email: deve andare all'indirizzo email che avevi inserito nel form, non a Resend
+7. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (hook useRotator, rotazione Home, invio form con fetch mockato con successo/errore, funzione serverless api/preventivo.js)
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: rotazione visibile e ciclica su Home, nessun layout shift, disattivata con `prefers-reduced-motion`, commuta con la lingua
+- Verifica via `curl` sull'endpoint `/api/preventivo` in produzione: risposta 405 su metodo non consentito, 400 su payload invalido, 200 su invio valido (senza dare per scontato l'arrivo dell'email, non verificabile da Claude Code)
+- Deploy Vercel "Ready" dopo il push finale
