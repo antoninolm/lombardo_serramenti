@@ -223,7 +223,7 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 1. Apri /contatti da PC: verifica che indirizzo, telefono e orari siano **esatti** (un refuso su questi dati è un problema serio per i clienti veri)
 2. Verifica che la mappa mostri il punto giusto (Viale Europa 44, Moio Alcantara) e non un placeholder grigio
 3. Clicca "Apri in Google Maps →": deve aprirsi la scheda Google Business dell'officina in una nuova scheda
-4. Dal telefono, tocca il numero di telefono in Contatti e/o il pulsante "Chiamaci" in Home: verifica che componga la chiamata al numero mostrato (366 547 2502 — **numero provvisorio**, non ancora quello reale dell'officina)
+4. Dal telefono, tocca il pulsante "Chiamaci" in fondo alla Home: verifica che componga la chiamata al numero mostrato (366 547 2502 — **numero provvisorio**, non ancora quello reale dell'officina)
 5. Ripeti i punti 1-2 in siciliano (toggle SIC)
 6. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
 7. **Importante**: il numero di telefono attuale è FAKE/PROVVISORIO — appena hai il numero reale dell'officina, comunicalo per l'aggiornamento
@@ -236,5 +236,16 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Verifica browser headless: Contatti mostra dati reali, iframe mappa carica, link Maps esterno corretto, CTA "Chiamaci" in Home punta al numero vero, in entrambe le lingue, desktop + mobile
 - Deploy Vercel "Ready" dopo il push finale
 
-### Checklist di chiusura
-_Da compilare a chiusura fase (Task 3)._
+### Checklist di chiusura (compilata da Claude Code, 2026-08-02)
+- `npm run build` senza errori: **PASS** (build in 298ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (15 file di test, 60/60 test: 2 nuovi test Contatti su iframe mappa e link Maps IT/SIC, più i 58 test preesistenti invariati; aggiunto `beforeEach` con `localStorage.clear()` in `Contatti.test.jsx` per isolare i test di lingua)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 24 file `.jsx` controllati)
+- Verifica browser headless (Playwright, installato temporaneamente fuori dal progetto, non aggiunto a package.json) su https://lombardo-serramenti.vercel.app, desktop (1440×900) e mobile (390×844): **PASS** — 30/30 controlli: indirizzo/telefono/orari reali visibili in Contatti IT e SIC, iframe mappa presente con `src` sulle coordinate corrette, link "Apri in Google Maps →" (IT) / "Rapri in Google Maps →" (SIC) presente e punta alla scheda Google Business reale con `target="_blank"`, CTA "Chiamaci" in Home punta a `tel:+393665472502`, nessuno scroll orizzontale, nessun errore console
+- Screenshot Contatti desktop e mobile: **PASS** — ispezionati visivamente, mappa mostra correttamente il punto su Moio Alcantara (pin rosso), card dati reali leggibili, link Maps visibile sotto la mappa
+- Numero di telefono cliccabile da mobile: **PASS** per il pulsante "Chiamaci" in Home (link `tel:` verificato) — la card "Telefono" in Contatti mostra il numero come testo semplice, non come link `tel:` (nessuna richiesta esplicita del task in tal senso); segnalato come possibile micro-miglioramento futuro, non bloccante
+- Deploy Vercel "Ready" dopo ogni push della fase: **PASS** — verificato via GitHub commit status API sui commit `7c0b374` (dati contatti reali) e `d10f2c3` (mappa embed), entrambi "success"
+- Conferma domenica chiusa: **PASS** — confermato esplicitamente da Antonino prima di iniziare la fase (nessuna ambiguità residua)
+- Lettura umana di indirizzo/telefono/orari per errori di battitura, verifica del punto esatto sulla mappa da un utente reale, prova del tasto "Chiamaci" su un telefono reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT, non verificabile in modo affidabile da Claude Code
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana dei dati di contatto (dove un errore di battitura avrebbe conseguenze reali sui clienti) e la verifica del numero di telefono da un dispositivo reale.
