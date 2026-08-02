@@ -1,7 +1,7 @@
 export const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/chi-siamo', label: 'Chi Siamo' },
-  { to: '/prodotti', label: 'Prodotti' },
-  { to: '/galleria', label: 'Galleria' },
-  { to: '/contatti', label: 'Contatti' },
+  { to: '/', key: 'nav.home' },
+  { to: '/chi-siamo', key: 'nav.chiSiamo' },
+  { to: '/prodotti', key: 'nav.prodotti' },
+  { to: '/galleria', key: 'nav.galleria' },
+  { to: '/contatti', key: 'nav.contatti' },
 ]

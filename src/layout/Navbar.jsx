@@ -3,6 +3,8 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { navLinks } from '../data/nav'
 import Button from '../components/Button'
 import logo from '../assets/logo-lombardo.png'
+import useLanguage from '../i18n/useLanguage'
+import LanguageToggle from '../i18n/LanguageToggle'
 
 const linkClasses = ({ isActive }) =>
   `font-display text-sm font-medium uppercase tracking-wide transition-colors ${
@@ -13,6 +15,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const [lastPathname, setLastPathname] = useState(location.pathname)
+  const { t } = useLanguage()
 
   if (location.pathname !== lastPathname) {
     setLastPathname(location.pathname)
@@ -29,18 +32,19 @@ export default function Navbar() {
         <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClasses} end={link.to === '/'}>
-              {link.label}
+              {t(link.key)}
             </NavLink>
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button to="/preventivo">Richiedi Preventivo</Button>
+        <div className="hidden items-center gap-4 md:flex">
+          <LanguageToggle />
+          <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
         </div>
 
         <button
           type="button"
-          aria-label={open ? 'Chiudi menu' : 'Apri menu'}
+          aria-label={open ? t('nav.chiudiMenu') : t('nav.apriMenu')}
           aria-expanded={open}
           className="text-cream-50 md:hidden"
           onClick={() => setOpen((o) => !o)}
@@ -61,11 +65,12 @@ export default function Navbar() {
         <div className="flex flex-col gap-4 border-t border-iron-500 bg-iron-700 px-4 py-4 md:hidden">
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClasses} end={link.to === '/'}>
-              {link.label}
+              {t(link.key)}
             </NavLink>
           ))}
+          <LanguageToggle className="py-2" />
           <Button to="/preventivo" className="w-full text-center">
-            Richiedi Preventivo
+            {t('common.richiediPreventivo')}
           </Button>
         </div>
       )}

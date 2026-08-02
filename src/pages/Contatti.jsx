@@ -3,8 +3,10 @@ import InfoCard from '../components/InfoCard'
 import Placeholder from '../components/Placeholder'
 import CtaBanner from '../components/CtaBanner'
 import { contatti } from '../data/contatti'
+import useLanguage from '../i18n/useLanguage'
 
 export default function Contatti() {
+  const { t } = useLanguage()
   return (
     <>
       <title>Contatti — Lombardo Serramenti</title>
@@ -17,7 +19,7 @@ export default function Contatti() {
             <InfoCard title="Indirizzo" lines={contatti.indirizzo} />
             <InfoCard title="Telefono" lines={[contatti.telefono]} />
             <InfoCard title="Email" lines={[contatti.email]} />
-            <InfoCard title="Orari" lines={contatti.orari} />
+            <InfoCard title="Orari" lines={t('common.orari')} />
           </div>
           <Placeholder alt="Mappa con la posizione dell'officina" caption="[mappa Google Maps — Fase 3]" ratio="4 / 3" />
         </div>
