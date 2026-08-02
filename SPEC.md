@@ -21,12 +21,17 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Galleria: griglia 2 colonne × 7 righe, celle verticali 3/4, full-width senza gap, spazio intro-griglia ridotto — richiesta cliente
 - 2026-08-02: Home: sezione realizzazioni da griglia 3 foto a carosello orizzontale scroll-snap con tutte le 14 foto, frecce + swipe, nessuna dipendenza — richiesta cliente
 - 2026-08-02: Galleria: griglia full-bleed senza gap, 2 righe da 7 su desktop (2 col mobile, 4 tablet), celle quadrate, reveal invariato — richiesta cliente, stile reference cardillo.it
+- 2026-08-02: Sito bilingue IT/SCN con mini-i18n custom (React Context + dizionari in `src/i18n/`), zero dipendenze. Default: italiano. Preferenza salvata in `localStorage` con fallback in-memory.
+- 2026-08-02: VINCOLO: la versione siciliana è bozza AI non validata; la validazione di un parlante nativo è bloccante per il lancio (Backlog).
+- 2026-08-02: `<title>` delle pagine restano in italiano in entrambe le lingue (SEO: una sola lingua indicizzata per ora).
+- 2026-08-02: H1 Home allineato al motto ufficiale ("Il ferro è il nostro mestiere.") come claim provvisorio, in attesa di conferma cliente.
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
 
 ## Backlog
-- Sostituire claim hero con motto ufficiale "il ferro è il nostro mestiere" o validare claim alternativo
+- Claim hero: motto ufficiale impostato come claim provvisorio; conferma definitiva del cliente in attesa (alternative: "Il ferro si piega alla tua idea" o altro)
+- Validazione della colonna SCN da parte di un parlante nativo della famiglia: NON bloccante per i deploy di lavoro, BLOCCANTE per il lancio ufficiale del sito al pubblico
 - Setup SSH GitHub
 - Invio reale form Preventivo via Resend (Vercel serverless function) — Fase 3, vedi CLAUDE.md
 - Integrare mappa reale (embed Google Maps) in Contatti — Fase 3, ora solo segnaposto
@@ -111,3 +116,30 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Scroll fluido su mobile reale e tempi di caricamento percepiti: **NON VERIFICATO** — verificato in modo equivalente con browser headless (nessun errore, nessuno scroll orizzontale, payload contenuto), ma la prova su un telefono reale resta da fare in UAT
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright, installato temporaneamente fuori dal progetto, non aggiunto a package.json) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
+
+## Fase 3c — Contratto
+
+### Cosa aspettarsi a fine fase
+- Un toggle "ITA | SIC" in navbar (desktop, vicino alla CTA preventivo; mobile, dentro il menu hamburger) che commuta la lingua di tutto il sito istantaneamente, senza ricaricare la pagina
+- Tutte le 6 pagine (Home, Chi Siamo, Prodotti, Galleria, Contatti, Preventivo), navbar e footer completamente tradotti in siciliano quando il toggle è su SIC, incluse etichette form e messaggi di validazione/conferma del Preventivo
+- Lingua di default sempre italiano al primo accesso; la scelta fatta dall'utente viene ricordata tra una visita e l'altra sullo stesso browser
+- I `<title>` delle pagine e gli alt text delle foto restano in italiano in entrambe le lingue (scelta SEO/contenuti, non un bug)
+- La versione siciliana è una bozza AI non ancora validata da un parlante nativo: resta pubblicamente visibile per il lavoro in corso, ma non è testo definitivo (vedi Backlog)
+
+### Come testa Antonino (UAT, da browser)
+1. Apri il sito da PC: in alto a destra nella navbar trovi "ITA | SIC". Clicca "SIC": tutta la pagina (menu, testi, bottoni) cambia lingua all'istante, senza che la pagina si ricarichi
+2. Naviga tra tutte e 6 le pagine (Home, Chi Siamo, Prodotti, Galleria, Contatti, Preventivo) restando su SIC: verifica che ogni pagina sia tradotta, non solo la Home
+3. In Preventivo, prova a inviare il modulo vuoto: verifica che anche i messaggi di errore siano in siciliano
+4. Ricarica la pagina (F5): la lingua scelta (SIC) deve restare impostata
+5. Torna su "ITA": tutto torna in italiano
+6. Ripeti i punti 1-2 dal telefono: apri il menu hamburger, verifica che il toggle lingua sia presente e funzioni allo stesso modo
+7. **Importante**: leggi il sito intero in siciliano e annota ogni forma/parola che "non si direbbe così" dalle vostre parti — questa lista sarà l'input per la validazione della famiglia prima del lancio pubblico
+8. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (provider/hook i18n, toggle navbar, testi Home e pagine restanti in entrambe le lingue)
+- Controllo automatico (script dedicato) che nessuna stringa italiana visibile nota resti hardcoded nei componenti delle 6 pagine, fuori dai dizionari
+- Verifica browser headless: toggle commuta Home e Chi Siamo, refresh mantiene la lingua scelta, nessun errore console, screenshot Home in SIC desktop + mobile
+- Deploy Vercel "Ready" dopo il push finale
