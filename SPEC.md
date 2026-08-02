@@ -94,3 +94,16 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Peso totale delle immagini `thumb` usate da Galleria sotto ~2.5 MB (`du -sh`)
 - Verifica browser headless: effetto reveal presente allo scroll, 14 immagini renderizzate, nessun errore console
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-02)
+- `npm run build` senza errori: **PASS** (build in 459ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (11/11 test: 7 routing + 3 hook useScrollReveal + 1 griglia Galleria con 14 immagini)
+- Peso totale immagini `thumb` usate da Galleria sotto ~2.5 MB: **PASS** (14 foto, 985 KB totali su https://lombardo-serramenti.vercel.app/galleria, verificato via browser headless con conteggio byte reale delle risposte di rete)
+- Verifica browser headless: effetto reveal presente allo scroll, 14 immagini renderizzate, nessun errore console: **PASS** (desktop 1440×900: 0/14 foto visibili prima dello scroll sotto la piega, 14/14 visibili dopo scroll completo fino in fondo; nessun errore console su Galleria, Home, mobile 390×844)
+- Home: 3 foto reali al posto dei Placeholder in "Dalle nostre realizzazioni": **PASS** (verificato: 3 `<img>` reali renderizzate nella sezione)
+- Mobile: niente scroll orizzontale su /galleria (390px): **PASS** (`document.body.scrollWidth` = `window.innerWidth` = 390)
+- Deploy Vercel "Ready" dopo il push finale: **NON VERIFICATO** — verrà confermato dopo il push del commit di chiusura (i 5 push precedenti della fase sono stati tutti confermati "success" via GitHub commit status API)
+- Scroll fluido su mobile reale e tempi di caricamento percepiti: **NON VERIFICATO** — verificato in modo equivalente con browser headless (nessun errore, nessuno scroll orizzontale, payload contenuto), ma la prova su un telefono reale resta da fare in UAT
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright, installato temporaneamente fuori dal progetto, non aggiunto a package.json) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
