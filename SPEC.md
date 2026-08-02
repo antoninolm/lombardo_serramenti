@@ -143,3 +143,14 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Controllo automatico (script dedicato) che nessuna stringa italiana visibile nota resti hardcoded nei componenti delle 6 pagine, fuori dai dizionari
 - Verifica browser headless: toggle commuta Home e Chi Siamo, refresh mantiene la lingua scelta, nessun errore console, screenshot Home in SIC desktop + mobile
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-02)
+- `npm run build` senza errori: **PASS** (build in 360ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (13 file di test, 40/40 test: provider/hook i18n, toggle navbar, Home, Chi Siamo, Prodotti, Contatti, Preventivo, PreventivoForm, più i test preesistenti di routing/Carousel/Galleria/useScrollReveal invariati)
+- Controllo automatico "nessuna stringa italiana hardcoded fuori dai dizionari": **PASS** — creato `scripts/check-i18n-coverage.mjs`, denylist di ~45 stringhe italiane note (etichette, messaggi di validazione, testi hero/feature/CTA) grepata su tutti i `.jsx` di `src/pages`, `src/layout`, `src/components` esclusi i test; i `<title>` sono esplicitamente esclusi dal controllo perché restano in italiano per scelta (SEO). Esito: nessuna occorrenza su 24 file controllati
+- Verifica browser headless (Playwright, installato temporaneamente fuori dal progetto, non aggiunto a package.json): **PASS** — 11/11 controlli: claim Home in IT di default e in SCN dopo il toggle, `document.documentElement.lang` aggiornato a `scn`, Chi Siamo resta in SCN dopo la navigazione, il refresh (F5) mantiene la lingua scelta, il toggle torna correttamente a ITA, nessun errore console desktop né mobile, toggle lingua visibile e funzionante nel menu hamburger mobile, nessuno scroll orizzontale a 390px
+- Screenshot Home in SIC desktop (1440×900) e mobile (iPhone 12, 390×844): **PASS** — generati e ispezionati, layout coerente con la versione italiana, nessuna rottura visiva
+- Deploy Vercel "Ready" dopo il push finale: **PASS** — verificato via GitHub commit status API su tutti i commit della fase (contratto/infrastruttura, toggle navbar, testi Home, testi pagine restanti), tutti "success"
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana dei testi in siciliano, che nessun controllo automatico può sostituire.
