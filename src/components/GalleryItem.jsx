@@ -6,7 +6,7 @@ export default function GalleryItem({ src, alt, eager = false }) {
   return (
     <div
       ref={ref}
-      className={`aspect-[4/3] overflow-hidden rounded-lg bg-iron-800 transition duration-700 ease-out motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none ${
+      className={`aspect-square overflow-hidden bg-iron-800 transition duration-700 ease-out motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none ${
         visible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
       }`}
     >
