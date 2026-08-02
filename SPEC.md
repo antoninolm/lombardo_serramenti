@@ -193,3 +193,16 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Verifica browser headless: rotazione visibile e ciclica su Home, nessun layout shift, disattivata con `prefers-reduced-motion`, commuta con la lingua
 - Verifica via `curl` sull'endpoint `/api/preventivo` in produzione: risposta 405 su metodo non consentito, 400 su payload invalido, 200 su invio valido (senza dare per scontato l'arrivo dell'email, non verificabile da Claude Code)
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-02)
+- `npm run build` senza errori: **PASS** (build in 459ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning; aggiunto un blocco `globals.node` in `eslint.config.js` per `api/**/*.js`, unica modifica infrastrutturale oltre ai file di feature)
+- `npm test` verde: **PASS** (15 file di test, 58/58 test: hook useRotator, rotazione Home incluso reset al cambio lingua, funzione serverless `api/preventivo.js` con tutti i rami di risposta, invio form con fetch mockato con successo/errore/payload, più i test preesistenti invariati)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 24 file `.jsx` controllati)
+- Verifica browser headless (Playwright, installato temporaneamente fuori dal progetto, non aggiunto a package.json) su https://lombardo-serramenti.vercel.app: **PASS** — 8/8 controlli: prima quote mostrata al caricamento, la quote cambia dopo 6s, nessun layout shift (stessa bounding box prima/dopo la rotazione), dopo il toggle SIC riparte dalla prima quote in siciliano, `prefers-reduced-motion` blocca la rotazione, il form con `/api/preventivo` bloccato (route intercettata) mostra l'errore e mantiene i valori compilati, nessun errore console
+- Verifica mobile headless (390×844) su produzione: **PASS** — nessuno scroll orizzontale (`document.body.scrollWidth` = `window.innerWidth` = 390), rotazione quotes funzionante, nessun errore console
+- Verifica via `curl` sull'endpoint `/api/preventivo` in produzione: **PASS** — `GET` → 405; payload vuoto (`{}`) → 400 con 5 errori di validazione; payload con honeypot `azienda` valorizzato → 200 `{"ok":true}` senza chiamare Resend (verificato anche in unit test); payload completo e valido (nome "Test Fase 3b") → 200 `{"ok":true}`
+- Invio reale di prova ("Test Fase 3b") dal sito in produzione: **PASS** l'endpoint (risposta 200 confermata sopra) — **NON VERIFICATO** l'arrivo effettivo dell'email nella casella `lombardoserramenti.contatti@gmail.com`, non verificabile da Claude Code: richiede conferma di Antonino in UAT (controllare anche la cartella Spam)
+- Deploy Vercel "Ready" dopo ogni push della fase: **PASS** — verificato via GitHub commit status API su tutti i commit della fase (contratto, quotes hero, serverless function, collegamento form, sync backlog), tutti "success"
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) e `curl` diretto sulla produzione come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana della rotazione delle quote e, soprattutto, la conferma dell'arrivo reale dell'email nella casella Gmail, che nessun controllo automatico può sostituire.
