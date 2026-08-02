@@ -11,6 +11,7 @@ const initialForm = {
   tipoLavoro: '',
   descrizione: '',
   privacy: false,
+  azienda: '',
 }
 
 const telefonoRegex = /^[+\d][\d\s()-]{6,}$/
@@ -31,6 +32,7 @@ export default function PreventivoForm({ onSubmitted }) {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   const tipiLavoro = [
     ...prodotti.map((p) => ({ value: p.slug, label: t(`prodotti.${p.slug}.title`) })),
@@ -42,19 +44,27 @@ export default function PreventivoForm({ onSubmitted }) {
     setForm((f) => ({ ...f, [name]: type === 'checkbox' ? checked : value }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     const validationErrors = validate(form, t)
     setErrors(validationErrors)
     if (Object.keys(validationErrors).length > 0) return
 
+    setSubmitError(false)
     setSubmitting(true)
-    // Fase 2: invio simulato, nessuna chiamata di rete.
-    // L'invio reale (Resend via Vercel serverless function) è previsto in Fase 3.
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/preventivo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!response.ok) throw new Error('preventivo submit failed')
       setSubmitting(false)
       onSubmitted(form.nome)
-    }, 600)
+    } catch {
+      setSubmitting(false)
+      setSubmitError(true)
+    }
   }
 
   return (
@@ -130,6 +140,23 @@ export default function PreventivoForm({ onSubmitted }) {
       {errors.privacy && (
         <p className="-mt-4 text-xs text-red-400" role="alert">
           {errors.privacy}
+        </p>
+      )}
+
+      <input
+        type="text"
+        name="azienda"
+        value={form.azienda}
+        onChange={handleChange}
+        aria-hidden="true"
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+      />
+
+      {submitError && (
+        <p className="text-sm text-red-400" role="alert">
+          {t('preventivo.form.submitError')}
         </p>
       )}
 

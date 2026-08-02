@@ -194,12 +194,12 @@ export const scn = {
         tipoLavoro: 'Scegli u tipu di travagghiu.', // SCN da validare
         privacy: 'Aviti ad accettari u trattamentu di li dati pi mannari a richiesta.', // SCN da validare
       },
+      submitError: '’nviu non arrinisciutu. Talìa a cunnessioni e riprova, oppuru chiamacci direttamente.', // SCN da validare
     },
     success: {
       title: 'Richiesta mannata, {{nome}}!', // SCN da validare
       titleFallbackName: 'grazii', // SCN da validare
       body: 'Ricivemmu a to richiesta di pribintivu. Ti ricuntattamu u primu chi si po’.', // SCN da validare
-      note: '(Simulazioni — Fasi 2: nudda email fu mannata daveru.)', // SCN da validare
       resetButton: 'Compila n’autra richiesta', // SCN da validare
     },
   },

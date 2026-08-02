@@ -185,12 +185,12 @@ export const it = {
         tipoLavoro: 'Seleziona il tipo di lavoro.',
         privacy: 'Devi accettare il trattamento dei dati per inviare la richiesta.',
       },
+      submitError: "Invio non riuscito. Controlla la connessione e riprova, oppure chiamaci direttamente.",
     },
     success: {
       title: 'Richiesta inviata, {{nome}}!',
       titleFallbackName: 'grazie',
       body: 'Abbiamo ricevuto la tua richiesta di preventivo. Ti ricontatteremo il prima possibile.',
-      note: '(Simulazione — Fase 2: nessuna email è stata realmente inviata.)',
       resetButton: "Compila un'altra richiesta",
     },
   },
