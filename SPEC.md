@@ -18,6 +18,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Hero Home: rotazione citazioni sul ferro ogni 6s, opzione B approvata — ruota SOLO la riga secondaria sotto il claim; claim e CTA fissi. Implementazione in task futuro dedicato.
 - 2026-08-02: `sharp` aggiunto come devDependency (unica nuova dipendenza Fase 3a), usato solo dallo script una tantum `scripts/optimize-galleria-images.mjs` per generare da `materiali/foto/` (14 JPEG originali, ~3.0 MB totali, rinominato il refuso `galleri3.jpeg` → `galleria3.jpeg`) le versioni WebP ottimizzate in `src/assets/galleria/`: `full/` (max 1600px, qualità 82, non usata in questa fase, predisposta per eventuale lightbox futuro) e `thumb/` (max 800px, qualità 78, ~1.0 MB totali per 14 foto — quella effettivamente caricata da Galleria e Home). Le foto originali restano invariate e sono state aggiunte a git (come già `materiali/brand/`).
 - 2026-08-02: Le versioni `full/` delle foto restano fuori da git (rigenerabili via script); si committano solo le `thumb/` effettivamente usate
+- 2026-08-02: Galleria: griglia 2 colonne × 7 righe, celle verticali 3/4, full-width senza gap, spazio intro-griglia ridotto — richiesta cliente
 - 2026-08-02: Galleria: griglia full-bleed senza gap, 2 righe da 7 su desktop (2 col mobile, 4 tablet), celle quadrate, reveal invariato — richiesta cliente, stile reference cardillo.it
 
 ## Fuori scope
