@@ -33,8 +33,9 @@ export const scn = {
   },
   home: {
     hero: {
-      eyebrow: 'Putìa Artigiana', // SCN da validare
+      eyebrow: 'Putìa Artigiana · Ro 1968', // SCN da validare
       claim: 'U ferru è u nostru misteri.', // dalla bozza
+      subclaim: 'U ferru è na cosa di famiglia', // SCN da validare
       quotes: [
         'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di tri generazioni.', // dalla bozza
         "U ferru non si cumanna: s'accumpagna.", // dalla bozza

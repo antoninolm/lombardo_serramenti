@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
-import Placeholder from '../components/Placeholder'
 import SectionHeading from '../components/SectionHeading'
 import FeatureCard from '../components/FeatureCard'
 import CategoryCard from '../components/CategoryCard'
@@ -12,19 +11,30 @@ import { galleriaItems } from '../data/galleria'
 import { contatti } from '../data/contatti'
 import useLanguage from '../i18n/useLanguage'
 import useRotator from '../hooks/useRotator'
+import logo from '../assets/logo-lombardo-crop.png'
 
 const REALIZZAZIONI_EAGER_COUNT = 4
 
 function HeroQuote({ quotes }) {
   const { index, entered } = useRotator(quotes)
   return (
-    <p
-      className={`min-h-[4.5rem] max-w-xl text-cream-200 transition-all duration-500 ease-out motion-reduce:transition-none sm:min-h-[3rem] ${
-        entered ? 'translate-x-0 opacity-100' : '-translate-x-6 opacity-0'
-      }`}
-    >
-      {quotes[index]}
-    </p>
+    <div>
+      <p
+        className={`min-h-[4.5rem] max-w-xl text-ink-500 transition-all duration-500 ease-out motion-reduce:transition-none sm:min-h-[3rem] ${
+          entered ? 'translate-x-0 opacity-100' : '-translate-x-6 opacity-0'
+        }`}
+      >
+        {quotes[index]}
+      </p>
+      <div className="mt-3 flex gap-1.5" aria-hidden="true">
+        {quotes.map((quote, i) => (
+          <span
+            key={quote}
+            className={`h-1 w-6 rounded-full transition-colors ${i === index ? 'bg-ember-500' : 'bg-cream-300'}`}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -37,22 +47,29 @@ export default function Home() {
     <>
       <title>Lombardo Serramenti — Il ferro è il nostro mestiere</title>
 
-      <section className="relative overflow-hidden">
-        <Placeholder alt="Fabbro al lavoro sul ferro battuto, scintille di saldatura" fill />
-        <div className="absolute inset-0 bg-iron-900/70" aria-hidden="true" />
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-4 py-28 sm:px-6">
-          <span className="font-display text-sm font-semibold uppercase tracking-widest text-ember-500">
-            {t('home.hero.eyebrow')}
-          </span>
-          <h1 className="max-w-2xl font-display text-4xl font-bold leading-tight sm:text-5xl">
-            {t('home.hero.claim')}
-          </h1>
-          <HeroQuote key={lang} quotes={quotes} />
-          <div className="flex flex-wrap gap-4">
-            <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
-            <Button to="/prodotti" variant="outline">
-              {t('home.ctaScopriProdotti')}
-            </Button>
+      <section
+        className="bg-cream-50"
+        style={{ minHeight: 'clamp(560px, 84vh, 800px)' }}
+      >
+        <div className="mx-auto grid h-full max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(280px,560px)_minmax(0,1fr)]">
+          <div className="flex flex-col gap-6">
+            <span className="font-display text-sm font-semibold uppercase tracking-widest text-ember-500">
+              {t('home.hero.eyebrow')}
+            </span>
+            <h1 className="max-w-2xl font-display text-4xl font-bold leading-tight text-ink-800 sm:text-5xl">
+              {t('home.hero.claim')}
+            </h1>
+            <p className="font-display italic text-ember-500">«{t('home.hero.subclaim')}»</p>
+            <HeroQuote key={lang} quotes={quotes} />
+            <div className="flex flex-wrap gap-4">
+              <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
+              <Button to="/prodotti" variant="outline">
+                {t('home.ctaScopriProdotti')}
+              </Button>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <img src={logo} alt="Lombardo Serramenti" className="w-full max-w-[480px]" />
           </div>
         </div>
       </section>

@@ -24,8 +24,9 @@ export const it = {
   },
   home: {
     hero: {
-      eyebrow: 'Officina Artigiana',
+      eyebrow: 'Officina Artigiana · Dal 1968',
       claim: 'Il ferro è il nostro mestiere.',
+      subclaim: 'Il ferro è una cosa di famiglia',
       quotes: [
         'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da tre generazioni.',
         'Il ferro non si comanda: si accompagna.',
