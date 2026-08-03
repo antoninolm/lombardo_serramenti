@@ -75,7 +75,7 @@ export default function PreventivoForm({ onSubmitted }) {
           name="nome"
           value={form.nome}
           onChange={handleChange}
-          className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
+          className="rounded border border-cream-400 bg-white px-3 py-2 text-ink-800 focus:border-ember-500 focus:outline-none focus:ring-2 focus:ring-ember-500/20"
         />
       </FormField>
 
@@ -86,7 +86,7 @@ export default function PreventivoForm({ onSubmitted }) {
             name="telefono"
             value={form.telefono}
             onChange={handleChange}
-            className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
+            className="rounded border border-cream-400 bg-white px-3 py-2 text-ink-800 focus:border-ember-500 focus:outline-none focus:ring-2 focus:ring-ember-500/20"
           />
         </FormField>
 
@@ -96,7 +96,7 @@ export default function PreventivoForm({ onSubmitted }) {
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
+            className="rounded border border-cream-400 bg-white px-3 py-2 text-ink-800 focus:border-ember-500 focus:outline-none focus:ring-2 focus:ring-ember-500/20"
           />
         </FormField>
       </div>
@@ -106,7 +106,7 @@ export default function PreventivoForm({ onSubmitted }) {
           name="tipoLavoro"
           value={form.tipoLavoro}
           onChange={handleChange}
-          className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
+          className="rounded border border-cream-400 bg-white px-3 py-2 text-ink-800 focus:border-ember-500 focus:outline-none focus:ring-2 focus:ring-ember-500/20"
         >
           <option value="">{t('preventivo.form.tipoLavoroPlaceholder')}</option>
           {tipiLavoro.map((tipo) => (
@@ -123,11 +123,11 @@ export default function PreventivoForm({ onSubmitted }) {
           value={form.descrizione}
           onChange={handleChange}
           rows={4}
-          className="rounded border border-iron-400 bg-iron-600 px-3 py-2 text-cream-50 focus:border-ember-500 focus:outline-none"
+          className="rounded border border-cream-400 bg-white px-3 py-2 text-ink-800 focus:border-ember-500 focus:outline-none focus:ring-2 focus:ring-ember-500/20"
         />
       </FormField>
 
-      <label className="flex items-start gap-2 text-sm text-cream-200">
+      <label className="flex items-start gap-2 text-sm text-ink-600">
         <input
           type="checkbox"
           name="privacy"
@@ -138,7 +138,7 @@ export default function PreventivoForm({ onSubmitted }) {
         <span>{t('preventivo.form.privacy')}</span>
       </label>
       {errors.privacy && (
-        <p className="-mt-4 text-xs text-red-400" role="alert">
+        <p className="-mt-4 text-xs text-red-600" role="alert">
           {errors.privacy}
         </p>
       )}
@@ -155,7 +155,7 @@ export default function PreventivoForm({ onSubmitted }) {
       />
 
       {submitError && (
-        <p className="text-sm text-red-400" role="alert">
+        <p className="text-sm text-red-600" role="alert">
           {t('preventivo.form.submitError')}
         </p>
       )}
