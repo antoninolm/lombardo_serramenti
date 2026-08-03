@@ -16,7 +16,7 @@ export default function ChiSiamo() {
         <SectionHeading eyebrow={t('nav.chiSiamo')} title={t('chiSiamo.title')} description={t('chiSiamo.subtitle')} />
         <div className="mt-8 grid gap-8 sm:grid-cols-2">
           {body.map((paragrafo) => (
-            <p key={paragrafo} className="text-cream-200">
+            <p key={paragrafo} className="text-ink-500">
               {paragrafo}
             </p>
           ))}
