@@ -13,7 +13,7 @@ export default function ZigZagBlock({ slug, title, description, imageAlt, revers
       <Placeholder alt={imageAlt} ratio="4 / 3" />
       <div>
         <h2 className="font-display text-2xl font-bold sm:text-3xl">{title}</h2>
-        <p className="mt-3 text-cream-200">{description}</p>
+        <p className="mt-3 text-ink-500">{description}</p>
         <Button to="/preventivo" variant="outline" className="mt-6">
           {t('prodotti.ctaBottone')}
         </Button>
