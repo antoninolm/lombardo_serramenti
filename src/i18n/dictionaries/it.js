@@ -8,6 +8,7 @@ export const it = {
     apriMenu: 'Apri menu',
     chiudiMenu: 'Chiudi menu',
     lingua: 'Lingua',
+    brandTagline: 'Officina artigiana dal 1968',
   },
   footer: {
     tagline: 'Officina artigiana di fabbro. Il ferro è il nostro mestiere.',

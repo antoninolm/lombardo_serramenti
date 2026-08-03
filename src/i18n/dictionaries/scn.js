@@ -13,6 +13,7 @@ export const scn = {
     apriMenu: 'Rapri u menu', // SCN da validare
     chiudiMenu: 'Chiudi u menu', // SCN da validare
     lingua: 'Lingua', // SCN da validare
+    brandTagline: 'Putìa artigiana ro 1968', // SCN da validare
   },
   footer: {
     tagline: 'Putìa artigiana di ferraru. U ferru è u nostru misteri.', // SCN da validare

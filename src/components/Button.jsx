@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 
 const variants = {
+  dark: 'bg-ink-900 text-cream-50 hover:brightness-125 border border-transparent',
   accent:
-    'bg-ember-500 text-ember-ink hover:brightness-110 border border-transparent',
+    'bg-ember-500 text-cream-50 hover:brightness-110 border border-transparent',
   outline:
-    'border border-iron-400 text-cream-50 hover:bg-iron-600',
+    'border border-ink-900 text-ink-800 hover:bg-cream-200',
 }
 
 export default function Button({ to, href, variant = 'accent', className = '', children, ...props }) {

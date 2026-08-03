@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { navLinks } from '../data/nav'
 import Button from '../components/Button'
-import logo from '../assets/logo-lombardo.png'
+import logo from '../assets/logo-lombardo-crop.png'
 import useLanguage from '../i18n/useLanguage'
 import LanguageToggle from '../i18n/LanguageToggle'
 
 const linkClasses = ({ isActive }) =>
   `font-display text-sm font-medium uppercase tracking-wide transition-colors ${
-    isActive ? 'text-ember-500' : 'text-cream-200 hover:text-cream-50'
+    isActive ? 'text-ember-500' : 'text-ink-600 hover:text-ink-800'
   }`
 
 export default function Navbar() {
@@ -23,10 +23,13 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-iron-500 bg-iron-700">
+    <header className="sticky top-0 z-50 border-b border-cream-300 bg-cream-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <NavLink to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Lombardo Serramenti" className="h-9 w-auto" />
+        <NavLink to="/" className="flex items-center gap-3">
+          <img src={logo} alt="Lombardo Serramenti" className="h-8 w-auto" />
+          <span className="hidden font-display text-[11px] uppercase tracking-[0.2em] text-ink-500 sm:inline">
+            {t('nav.brandTagline')}
+          </span>
         </NavLink>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -39,14 +42,14 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           <LanguageToggle />
-          <Button to="/preventivo">{t('common.richiediPreventivo')}</Button>
+          <Button to="/preventivo" variant="dark">{t('common.richiediPreventivo')}</Button>
         </div>
 
         <button
           type="button"
           aria-label={open ? t('nav.chiudiMenu') : t('nav.apriMenu')}
           aria-expanded={open}
-          className="text-cream-50 md:hidden"
+          className="text-ink-800 md:hidden"
           onClick={() => setOpen((o) => !o)}
         >
           {open ? (
@@ -62,14 +65,14 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="flex flex-col gap-4 border-t border-iron-500 bg-iron-700 px-4 py-4 md:hidden">
+        <div className="flex flex-col gap-4 border-t border-cream-300 bg-cream-50 px-4 py-4 md:hidden">
           {navLinks.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClasses} end={link.to === '/'}>
               {t(link.key)}
             </NavLink>
           ))}
           <LanguageToggle className="py-2" />
-          <Button to="/preventivo" className="w-full text-center">
+          <Button to="/preventivo" variant="dark" className="w-full text-center">
             {t('common.richiediPreventivo')}
           </Button>
         </div>

@@ -2,7 +2,7 @@ import useLanguage from './useLanguage'
 
 const langButtonClasses = (active) =>
   `font-display text-sm font-semibold uppercase tracking-wide transition-colors ${
-    active ? 'text-ember-500' : 'text-cream-200 hover:text-cream-50'
+    active ? 'text-ember-500 underline underline-offset-4 decoration-2' : 'text-ink-400 hover:text-ink-600'
   }`
 
 export default function LanguageToggle({ className = '' }) {
@@ -18,7 +18,7 @@ export default function LanguageToggle({ className = '' }) {
       >
         ITA
       </button>
-      <span className="text-cream-400" aria-hidden="true">
+      <span className="text-ink-400" aria-hidden="true">
         |
       </span>
       <button
