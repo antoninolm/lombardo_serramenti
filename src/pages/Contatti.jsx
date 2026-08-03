@@ -26,7 +26,7 @@ export default function Contatti() {
           </div>
           <div className="flex flex-col gap-3">
             <div
-              className="relative w-full overflow-hidden rounded-lg border border-iron-500"
+              className="relative w-full overflow-hidden rounded-lg border border-cream-300"
               style={{ aspectRatio: '4 / 3' }}
             >
               <iframe
