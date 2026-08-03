@@ -335,3 +335,16 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Verifica browser headless: 5 foto reali renderizzate in Prodotti e in Home (nessun Placeholder residuo per queste categorie), nessun errore console, screenshot desktop + mobile
 - Peso ottimizzato delle foto in `src/assets/prodotti/` riportato nel commit
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-03)
+- `npm run build` senza errori: **PASS** (build in ~600ms, nessun errore, in entrambi i commit della fase)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (15 file di test, 60/60 test invariati — nessuna regressione)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 24 file `.jsx` controllati, nessuna nuova stringa introdotta da questa fase)
+- Peso foto ottimizzate in `src/assets/prodotti/`: **PASS** — 224 KB → 221 KB totali (foto già piccole in origine, il guadagno principale è l'uniformità di formato WebP, non la compressione: 2 delle 5 foto sono leggermente cresciute in KB, differenza trascurabile)
+- Verifica browser headless (Playwright, installato temporaneamente via `npm install --no-save`, rimosso a verifica completata) su https://lombardo-serramenti.vercel.app, desktop (1440×900) e mobile (390×844): **PASS** — Prodotti mostra 5 `<img>` reali (0 elementi `role="img"` Placeholder residui), Home mostra 20 `<img>` totali (5 categorie + 14 galleria + 1 logo hero), nessun errore console su tutte e 4 le combinazioni pagina/viewport, nessuno scroll orizzontale (`document.body.scrollWidth === window.innerWidth`)
+- Screenshot Prodotti e Home, desktop e mobile: **PASS** — ispezionati visivamente, ciascuna foto corrisponde alla categoria giusta (cancello per Cancelli, grata decorativa per Ringhiere & Balaustre, portone in ferro battuto per Portoni & Serrande, inferriata a losanghe per Inferriate & Grate di Sicurezza, dettaglio in ferro battuto ornamentale per Opere su Misura), nessun ritaglio che tagli male il soggetto principale
+- Deploy Vercel "Ready" dopo ogni push della fase: **PASS** — verificato via GitHub commit status API sui commit `0287f90` (ottimizzazione foto) e `092b47f` (sostituzione placeholder), entrambi "success"
+- Corrispondenza foto/categoria e qualità del ritaglio giudicata da un occhio umano reale (non lo screenshot di Claude Code): **NON VERIFICATO** — richiede conferma di Antonino in UAT
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare il giudizio umano su corrispondenza foto/categoria e qualità del ritaglio, che è lo scopo stesso di questa fase.
