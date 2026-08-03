@@ -23,6 +23,7 @@ export default function Prodotti() {
           <ZigZagBlock
             key={categoria.slug}
             slug={categoria.slug}
+            image={categoria.image}
             imageAlt={categoria.imageAlt}
             title={t(`prodotti.${categoria.slug}.title`)}
             description={t(`prodotti.${categoria.slug}.description`)}

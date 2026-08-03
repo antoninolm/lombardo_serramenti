@@ -98,6 +98,7 @@ export default function Home() {
             <CategoryCard
               key={categoria.slug}
               slug={categoria.slug}
+              image={categoria.image}
               imageAlt={categoria.imageAlt}
               title={t(`prodotti.${categoria.slug}.title`)}
             />
