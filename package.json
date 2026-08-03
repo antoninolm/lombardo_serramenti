@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "images:galleria": "node scripts/optimize-galleria-images.mjs",
+    "images:prodotti": "node scripts/optimize-prodotti-images.mjs",
     "logo:crop": "node scripts/crop-logo.mjs"
   },
   "dependencies": {

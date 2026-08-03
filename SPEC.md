@@ -35,6 +35,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-03: Fase 6: Galleria resta catalogo unico senza filtri per categoria (decisione Fase 3a confermata) — il brief di restyling menzionava "filtri pill" ma si riferiva a una versione di mockup precedente alla scelta cliente di Fase 3a; nessun filtro reintrodotto
 - 2026-08-03: Fase 6: nessuna sezione "recensioni Google" aggiunta in Contatti in questa fase — non esiste ancora una scheda Google Business pubblica né recensioni reali da mostrare (deciso con Antonino: si evita di inventare contenuti); voce Backlog dedicata per quando la scheda esisterà
 - 2026-08-03: Fase 6: logo (`src/assets/logo-lombardo.png`, sfondo bianco pieno con cornice scura perimetrale e timbratura) ritagliato via script automatico (`scripts/crop-logo.mjs`, sharp) a coordinate fisse attorno alla scritta; sfondo bianco mantenuto, nessun tentativo di rimozione/trasparenza (deciso con Antonino: opzione più sicura, niente rischio di artefatti da chroma-key)
+- 2026-08-03: Fase 3f: foto reali per le 5 categorie Prodotti, ottimizzate in WebP via `scripts/optimize-prodotti-images.mjs` (adattamento di `scripts/optimize-galleria-images.mjs`): sorgenti in `materiali/foto-prodotti/*.jpeg` (i nomi file forniti dal cliente non seguono gli slug di `prodotti.js`, es. `"ringhiere e balaustre.jpeg"` → slug `ringhiere`, mappa esplicita nello script), output in `src/assets/prodotti/{slug}.webp`, larghezza max 1200px, qualità 80, un solo formato (foto già piccole, nessuna variante full/thumb necessaria)
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
 
 ## Fuori scope
@@ -309,3 +310,27 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Lettura umana della resa visiva su schermo reale (colori, leggibilità, gerarchia), prova su telefono reale, verifica del ritaglio logo a occhio umano non esperto di design: **NON VERIFICATO** — richiede conferma di Antonino in UAT, non sostituibile da controlli automatici
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) e comandi automatici come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare il giudizio estetico complessivo (che è lo scopo stesso di questa fase) resta da validare a occhio umano.
+
+## Fase 3f — Contratto
+
+### Cosa aspettarsi a fine fase
+- Pagina Prodotti (/prodotti): ciascuna delle 5 categorie (cancelli, ringhiere, portoni, inferriate, opere su misura) mostra la foto reale fornita dal cliente al posto del riquadro grigio a righe (Placeholder)
+- Home (/): l'anteprima categorie prodotti mostra le stesse 5 foto reali al posto dei Placeholder
+- Nessun'altra sezione toccata: Galleria, carosello realizzazioni Home, mappa Contatti restano invariati
+- Alt text delle foto: resta quello placeholder generico già esistente in `prodotti.js` (non modificato, in attesa di testi definitivi dal cliente — vedi Backlog)
+- Le foto sono ottimizzate in WebP (peso ridotto) tramite script dedicato, sullo stesso pattern della Fase 3a
+
+### Come testa Antonino (UAT, da browser)
+1. Apri /prodotti da PC: verifica che ognuna delle 5 categorie mostri la foto giusta (non scambiata con un'altra categoria) e che il ritaglio dell'immagine non tagli male il soggetto principale
+2. Apri la Home e controlla l'anteprima categorie prodotti: stesse 5 foto reali, stesso controllo su ritaglio/corrispondenza categoria
+3. Ripeti i punti 1-2 dal telefono: foto leggibili, nessun elemento tagliato o sovrapposto
+4. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (nessuna regressione)
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: 5 foto reali renderizzate in Prodotti e in Home (nessun Placeholder residuo per queste categorie), nessun errore console, screenshot desktop + mobile
+- Peso ottimizzato delle foto in `src/assets/prodotti/` riportato nel commit
+- Deploy Vercel "Ready" dopo il push finale
