@@ -24,9 +24,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-cream-300 bg-cream-50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <NavLink to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Lombardo Serramenti" className="h-8 w-auto" />
+          <img src={logo} alt="Lombardo Serramenti" className="h-16 w-auto" />
           <span className="hidden font-display text-[11px] uppercase tracking-[0.2em] text-ink-500 lg:inline">
             {t('nav.brandTagline')}
           </span>
