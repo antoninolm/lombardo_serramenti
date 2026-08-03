@@ -5,7 +5,7 @@ export default function Placeholder({ alt, caption, ratio = '4 / 3', fill = fals
       role="img"
       aria-label={alt}
       style={fill ? undefined : { aspectRatio: ratio }}
-      className={`${box} flex items-end overflow-hidden bg-[repeating-linear-gradient(45deg,var(--color-iron-500),var(--color-iron-500)_10px,var(--color-iron-600)_10px,var(--color-iron-600)_20px)] ${className}`}
+      className={`${box} flex items-end overflow-hidden bg-[repeating-linear-gradient(45deg,var(--color-cream-300),var(--color-cream-300)_10px,var(--color-cream-400)_10px,var(--color-cream-400)_20px)] ${className}`}
     >
       <span
         aria-hidden="true"

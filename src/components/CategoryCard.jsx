@@ -5,7 +5,7 @@ export default function CategoryCard({ slug, title, imageAlt }) {
   return (
     <Link
       to={`/prodotti#${slug}`}
-      className="group overflow-hidden rounded-lg border border-iron-500 bg-iron-600 transition-colors hover:border-ember-500"
+      className="group overflow-hidden rounded-lg border border-cream-300 bg-white transition-colors hover:border-ember-500"
     >
       <Placeholder alt={imageAlt} ratio="4 / 3" />
       <div className="p-4">

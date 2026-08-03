@@ -12,7 +12,7 @@ export default function SectionHeading({ eyebrow, title, description, action, al
         <h2 className="font-display text-3xl font-bold sm:text-4xl">{title}</h2>
         {action}
       </div>
-      {description && <p className="max-w-2xl text-cream-200">{description}</p>}
+      {description && <p className="max-w-2xl text-ink-500">{description}</p>}
     </div>
   )
 }

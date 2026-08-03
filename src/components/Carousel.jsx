@@ -34,13 +34,13 @@ export default function Carousel({
   }
 
   return (
-    <div className="relative">
+    <div className="relative px-0 sm:px-8">
       <button
         type="button"
         aria-label={prevLabel}
         onClick={() => scroll(-1)}
         disabled={!canScrollPrev}
-        className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-iron-900/80 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"
+        className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-ink-900/85 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"
       >
         ‹
       </button>
@@ -64,7 +64,7 @@ export default function Carousel({
         aria-label={nextLabel}
         onClick={() => scroll(1)}
         disabled={!canScrollNext}
-        className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-iron-900/80 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"
+        className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-ink-900/85 p-2 text-xl text-cream-50 transition-opacity hover:bg-ember-500 disabled:pointer-events-none disabled:opacity-0 sm:flex"
       >
         ›
       </button>
