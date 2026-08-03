@@ -289,3 +289,22 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded (incluse le 2 nuove chiavi aggiunte correttamente ai dizionari)
 - Verifica browser headless: palette applicata coerentemente su tutte le pagine desktop+mobile, hero a due colonne senza sovrapposizioni a nessuna larghezza, indicatori rotazione quote presenti e funzionanti, carosello con frecce non sovrapposte alle card, nessun filtro in Galleria, nessuna sezione recensioni in Contatti, nessun errore console, nessuno scroll orizzontale
 - Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-03)
+- `npm run build` senza errori: **PASS** (build in ~520ms, nessun errore, in tutti i 14 commit della fase)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning dopo ogni task)
+- `npm test` verde: **PASS** (15 file di test, 60/60 test invariati — nessuna regressione su routing, i18n, rotazione quote, scroll-reveal, carosello, form)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 24 file `.jsx` controllati, incluse le 2 nuove chiavi `nav.brandTagline` e `home.hero.subclaim` correttamente nei dizionari IT/SCN)
+- Grep finale residui `iron-`/`ember-ink` su `src/`: **PASS** (zero occorrenze, anche nei file di test)
+- Verifica browser headless (Playwright, installato temporaneamente fuori dal progetto via `npm install --no-save`, non aggiunto a `package.json`), desktop (1440×900) e mobile (390×844) su tutte le 6 pagine: **PASS** — 0 errori console su tutte le 12 combinazioni pagina/viewport, nessuno scroll orizzontale (`document.body.scrollWidth === window.innerWidth` su tutte)
+- Hero Home a griglia 2 colonne: **PASS** — verificato via screenshot a 1440px, 768px e 390px: testo e logo mai sovrapposti a nessuna larghezza (sotto il breakpoint `lg` la griglia collassa a singola colonna impilata, non sovrapposta)
+- Indicatori rotazione quote: **PASS** — barre presenti sotto la citazione, quella attiva evidenziata in arancio (verificato via screenshot; comportamento temporale della rotazione già coperto da `useRotator.test.jsx`, non ri-verificato manualmente in questa fase perché la logica non è stata toccata)
+- Carosello realizzazioni: frecce ricolorate e spostate fuori dal bordo della riga, meccanica invariata: **PASS** — verificato che il pulsante "Foto precedente" diventi visibile dopo click su "Foto successiva" (scroll-snap funzionante)
+- Galleria: nessun filtro reintrodotto, effetto scroll-reveal funzionante: **PASS** — verificato via `getComputedStyle` che l'opacità di un elemento passi da 0 (prima dello scroll) a 1 (dopo scroll a fondo pagina)
+- Toggle lingua ITA/SIC: **PASS** — verificato che il claim H1 cambi in siciliano dopo il click su "SIC"
+- Nessuna sezione recensioni Google aggiunta in Contatti, mappa invariata: **PASS** (verificato via screenshot)
+- Regola "artigianale riferito solo al ferro": **PASS** — nessun contenuto in `src/` menziona alluminio o prodotti industriali
+- Deploy Vercel "Ready" dopo il push finale (commit `d1c6c30`): **PASS** — verificato via GitHub commit status API (`state: success`) e via `curl` diretto su https://lombardo-serramenti.vercel.app/ e /galleria (HTTP 200)
+- Lettura umana della resa visiva su schermo reale (colori, leggibilità, gerarchia), prova su telefono reale, verifica del ritaglio logo a occhio umano non esperto di design: **NON VERIFICATO** — richiede conferma di Antonino in UAT, non sostituibile da controlli automatici
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) e comandi automatici come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare il giudizio estetico complessivo (che è lo scopo stesso di questa fase) resta da validare a occhio umano.
