@@ -31,6 +31,11 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Telefono inserito (366 547 2502) è PROVVISORIO/FAKE in attesa del numero reale dal cliente — sostituire appena disponibile in data/contatti.js (da cui deriva anche l'href "tel:" della CTA "Chiamaci" in Home)
 - 2026-08-02: Mappa Contatti sostituita con embed Google Maps reale (formato query senza API key) sulle coordinate dell'officina, con link alla scheda Google Business completa
 
+- 2026-08-03: Fase 6 (restyling visivo): rename dei token Tailwind `@theme` in `src/index.css` da `iron-*`/`ember-ink` (palette dark/metallica provvisoria) a `cream-*`/`ink-*`/`ember-*` (palette chiara/showroom) — rename scelto invece di solo ricolorare gli stessi nomi, per evitare nomi permanentemente fuorvianti (es. `bg-iron-700` userebbe una var chiamata "iron" per uno sfondo crema chiaro)
+- 2026-08-03: Fase 6: Galleria resta catalogo unico senza filtri per categoria (decisione Fase 3a confermata) — il brief di restyling menzionava "filtri pill" ma si riferiva a una versione di mockup precedente alla scelta cliente di Fase 3a; nessun filtro reintrodotto
+- 2026-08-03: Fase 6: nessuna sezione "recensioni Google" aggiunta in Contatti in questa fase — non esiste ancora una scheda Google Business pubblica né recensioni reali da mostrare (deciso con Antonino: si evita di inventare contenuti); voce Backlog dedicata per quando la scheda esisterà
+- 2026-08-03: Fase 6: logo (`src/assets/logo-lombardo.png`, sfondo bianco pieno con cornice scura perimetrale e timbratura) ritagliato via script automatico (`scripts/crop-logo.mjs`, sharp) a coordinate fisse attorno alla scritta; sfondo bianco mantenuto, nessun tentativo di rimozione/trasparenza (deciso con Antonino: opzione più sicura, niente rischio di artefatti da chroma-key)
+
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
 
@@ -48,6 +53,8 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - Dominio custom (fine progetto) — sbloccherebbe anche un mittente email professionale su Resend (invece di onboarding@resend.dev)
 - Valutare rate limiting/captcha sul form Preventivo se arriva spam nonostante l'honeypot
 - Valutare `npm audit fix` per l'advisory su react-router (RSC Mode CSRF Bypass) — non applicabile a questo setup SPA senza data router, ma da rivalutare se si passa a `createBrowserRouter`
+- Sezione "recensioni Google" in Contatti (stelle, card): implementare con dati reali quando esisterà una scheda Google Business Profile pubblica per l'officina — vedi anche voce Backlog "Creare/collegare una scheda Google Business Profile"
+- Valutare self-hosting dei font Oswald/Barlow (oggi Google Fonts via `<link>` in `index.html`) — non implementato in Fase 6, non richiesto esplicitamente
 
 ## Fase 2 — Contratto
 
@@ -249,3 +256,36 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Lettura umana di indirizzo/telefono/orari per errori di battitura, verifica del punto esatto sulla mappa da un utente reale, prova del tasto "Chiamaci" su un telefono reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT, non verificabile in modo affidabile da Claude Code
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare la lettura umana dei dati di contatto (dove un errore di battitura avrebbe conseguenze reali sui clienti) e la verifica del numero di telefono da un dispositivo reale.
+
+## Fase 6 — Contratto
+
+### Cosa aspettarsi a fine fase
+- Nuova palette "chiara/showroom" su tutte le 6 pagine: sfondo crema, testo scuro, accento arancio caldo, sezioni di contrasto scure (banda numeri, footer, bottone primario "Richiedi Preventivo")
+- Header con sfondo crema, logo reale ritagliato (senza cornice/timbratura) affiancato dalla scritta "OFFICINA ARTIGIANA DAL 1968", voce di menu attiva in arancio, toggle lingua "ITA | SIC" trattato come elemento di brand (ITA sottolineato in arancio quando attivo)
+- Home: hero riprogettato a griglia esplicita a due colonne (testo a sinistra, logo reale a destra, mai sovrapposti), con piccoli indicatori a barre sotto la citazione che segnalano la rotazione ogni 6s; sezioni sottostanti (perché sceglierci, categorie prodotti, banda numeri, carosello realizzazioni, CTA finale) ricolorate nella nuova palette, stessa identica funzionalità di prima (rotazione quote, carosello con swipe/frecce, nessun cambio di logica)
+- Footer scuro con logo su un riquadro chiaro, colonne Naviga/Contatti/Orari
+- Chi Siamo, Prodotti, Galleria, Contatti, Preventivo: stessa struttura e stessi contenuti di oggi, solo ricolorati/ristilizzati nella nuova palette e font
+- Galleria: resta catalogo unico senza filtri per categoria (nessuna modifica funzionale)
+- Contatti: nessuna sezione "recensioni Google" aggiunta in questa fase (dati non ancora disponibili, vedi Backlog); mappa Google invariata
+- Nessun cambio di routing, contenuti/testi (salvo 2 nuove etichette: tagline header e sottoclaim hero), i18n IT/SCN, o funzionalità del form preventivo
+
+### Come testa Antonino (UAT, da browser)
+1. Apri il sito da PC: verifica che tutta la navbar sia chiara (sfondo crema), col logo vero (non più un rettangolo generico) e la scritta "Officina artigiana dal 1968" accanto
+2. Apri la Home: verifica che il titolo e il logo stiano ciascuno nella propria metà, senza che si sovrappongano, a qualsiasi larghezza della finestra (prova anche a restringere la finestra del browser)
+3. Osserva la riga di citazione sotto il titolo per 30 secondi: deve cambiare ogni 6s come prima, ma ora con dei piccoli trattini/pallini sotto che indicano quale citazione è attiva
+4. Scorri tutta la Home: verifica che i colori siano coerenti (crema/arancio/scuro) su ogni sezione, inclusa la banda scura con i numeri (anni, progetti, generazioni) e il carosello delle realizzazioni (le frecce non devono più coprire le foto)
+5. Naviga su tutte le altre 5 pagine (Chi Siamo, Prodotti, Galleria, Contatti, Preventivo): verifica che tutte abbiano la stessa palette chiara e che nessun contenuto sia sparito o cambiato (stesse foto, stessi testi, stesse categorie)
+6. In Galleria: conferma che NON ci siano filtri per categoria (resta una griglia unica di foto, come oggi)
+7. In Contatti: verifica che la mappa funzioni come prima e che non ci sia (per ora) una sezione recensioni
+8. Compila e invia il form Preventivo: deve funzionare esattamente come prima, con il messaggio di conferma ristilizzato
+9. Ripeti i punti principali dal telefono: menu leggibile, nessun elemento tagliato o sovrapposto, niente scroll orizzontale
+10. Ripeti la navigazione in siciliano (toggle SIC): stessa palette, stessi testi già noti
+11. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (nessuna regressione: routing, i18n, form, rotazione quote, scroll-reveal, carosello)
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded (incluse le 2 nuove chiavi aggiunte correttamente ai dizionari)
+- Verifica browser headless: palette applicata coerentemente su tutte le pagine desktop+mobile, hero a due colonne senza sovrapposizioni a nessuna larghezza, indicatori rotazione quote presenti e funzionanti, carosello con frecce non sovrapposte alle card, nessun filtro in Galleria, nessuna sezione recensioni in Contatti, nessun errore console, nessuno scroll orizzontale
+- Deploy Vercel "Ready" dopo il push finale
