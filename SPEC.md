@@ -456,3 +456,17 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Peso totale `src/assets/galleria/thumb/` con 15 foto sotto il budget ~2.5 MB
 - Verifica browser headless: 15 foto in griglia 3 colonne (desktop/tablet) / 1 colonna (mobile), nessun gap, reveal funzionante, nessuno scroll orizzontale a 390/768/1440px, screenshot desktop+mobile
 - Deploy Vercel "Ready" dopo ogni push della fase
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-04)
+- `npm run build` senza errori: **PASS** (nessun errore, in tutti e 3 i task della fase)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (15 file di test, 66/66 test — `Galleria.test.jsx` aggiornato a 15 immagini, nessuna regressione)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 25 file `.jsx` controllati)
+- Peso `src/assets/galleria/thumb/` con 15 foto: **PASS** — 1,1 MB totali, sotto il budget ~2.5 MB
+- Verifica browser headless (Playwright, installato temporaneamente via `npm install --no-save`, rimosso a verifica completata) su build locale (`vite preview`), 390×844 (mobile), 768×1024 (tablet), 1440×900 (desktop): **PASS** — 15 foto renderizzate su tutti i viewport (verificato con selettore scoped alla griglia, per non contare il logo in navbar); 3 colonne rilevate a 768px e 1440px, 1 colonna a 390px; gap orizzontale tra celle adiacenti ~0 (subpixel, 0.007–0.035px, coerente con `gap-0`); nessuno scroll orizzontale su nessun viewport; nessun errore console
+- Effetto reveal con 15 foto: **PASS** — verificato con scroll incrementale (a step, non un salto istantaneo) per replicare uno scroll utente reale: tutte e 15 le celle raggiungono opacità 1 dopo essere passate nel viewport, su tutti e 3 i viewport testati. Nota tecnica: uno screenshot `fullPage` scattato dopo un salto istantaneo a fine pagina mostra le righe centrali "sbiadite" — è un artefatto della cattura `fullPage` (che include sezioni mai transitate nel viewport reale, quindi mai osservate da `IntersectionObserver`), non un difetto del sito; con scroll incrementale il comportamento è corretto
+- Screenshot Galleria, desktop (1440px) e tablet (768px), con scroll incrementale: **PASS** — ispezionati visivamente, 3 colonne, celle verticali, nessun gap, nessun ritaglio evidentemente sbagliato sulla 15ª foto
+- Deploy Vercel "Ready" dopo ogni push della fase (commit `aa3405e`, `e5afe9a`): **PASS** — verificato via GitHub commit status API su entrambi i push, tutti "success"
+- Corrispondenza foto/posizione e giudizio sul ritaglio (`object-cover`) da un occhio umano reale, prova di scroll fluido su un telefono reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
