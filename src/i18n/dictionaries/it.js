@@ -28,17 +28,17 @@ export const it = {
       claim: 'Il ferro è il nostro mestiere.',
       subclaim: 'Il ferro è una cosa di famiglia',
       quotes: [
-        'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da tre generazioni.',
+        'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da due generazioni.',
         'Il ferro non si comanda: si accompagna.',
         'Ogni cancello racconta la casa che custodisce.',
-        'Battiamo il ferro da tre generazioni.',
+        'Battiamo il ferro da due generazioni.',
         "Su misura non è un'opzione: è il nostro modo di lavorare.",
       ],
     },
     ctaScopriProdotti: 'Scopri i prodotti',
     features: [
       {
-        title: 'Lavorazione artigianale',
+        title: 'Lavorato a mano in officina',
         description: 'Ogni pezzo è disegnato e lavorato a mano in officina, non assemblato da componenti standard.',
       },
       {
@@ -56,7 +56,7 @@ export const it = {
     ],
     perche: {
       eyebrow: 'Perché scegliere noi',
-      title: 'Un mestiere, tre generazioni.',
+      title: 'Un mestiere, due generazioni.',
     },
     prodottiSection: {
       eyebrow: 'Prodotti',
@@ -78,8 +78,8 @@ export const it = {
     stats: [
       { value: '55+', label: 'Anni di esperienza' },
       { value: '1.200+', label: 'Lavori realizzati' },
-      { value: '3', label: 'Generazioni in officina' },
-      { value: '100%', label: 'Lavorazioni artigianali' },
+      { value: '2', label: 'Generazioni in officina' },
+      { value: '100%', label: 'Lavorazioni fatte a mano' },
     ],
   },
   prodotti: {
@@ -112,7 +112,7 @@ export const it = {
     ctaBottone: 'Richiedi preventivo →',
   },
   chiSiamo: {
-    title: 'Tre generazioni, un solo mestiere.',
+    title: 'Due generazioni, un solo mestiere.',
     subtitle: 'Il ferro è una cosa di famiglia.',
     body: [
       'Siamo i fratelli Lombardo, e il ferro lo abbiamo respirato prima ancora di lavorarlo. Nostro padre ci ha cresciuti in officina: ci ha insegnato l’arte del ferro com’era stata insegnata a lui — con pazienza, precisione e rispetto per il materiale. Ci ha insegnato che un cancello non si giudica quando lo consegni, ma dopo vent’anni di sole, pioggia e salsedine.',
@@ -137,8 +137,8 @@ export const it = {
       },
       {
         year: 'Oggi',
-        title: 'Terza generazione',
-        text: 'L’officina continua a crescere restando fedele al lavoro artigianale, un pezzo alla volta.',
+        title: 'La seconda generazione, oggi',
+        text: 'L’officina continua a crescere restando fedele al lavoro fatto a mano, un pezzo alla volta.',
       },
     ],
     cta: {

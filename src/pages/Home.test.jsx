@@ -46,7 +46,7 @@ describe('Home', () => {
       renderHome()
       expect(
         screen.getByText(
-          'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da tre generazioni.',
+          'Cancelli, ringhiere, portoni e opere su misura, disegnati e realizzati a mano nella nostra officina. Da due generazioni.',
         ),
       ).toBeInTheDocument()
 
@@ -64,7 +64,7 @@ describe('Home', () => {
 
       expect(
         screen.getByText(
-          'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di tri generazioni.',
+          'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di dui generazioni.',
         ),
       ).toBeInTheDocument()
     })

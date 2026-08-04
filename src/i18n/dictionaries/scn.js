@@ -37,17 +37,17 @@ export const scn = {
       claim: 'U ferru è u nostru misteri.', // dalla bozza
       subclaim: 'U ferru è na cosa di famiglia', // SCN da validare
       quotes: [
-        'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di tri generazioni.', // dalla bozza
+        'Cancelli, ringheri, purtuna e travagghi supra misura, disignati e fatti a manu nna nostra putìa. Di dui generazioni.', // dalla bozza
         "U ferru non si cumanna: s'accumpagna.", // dalla bozza
         'Ogni cancellu cunta a casa ca talìa.', // dalla bozza
-        'Vattemu u ferru di tri generazioni.', // dalla bozza
+        'Vattemu u ferru di dui generazioni.', // dalla bozza
         'Supra misura non è na scelta: è u nostru modu di travagghiari.', // dalla bozza
       ],
     },
     ctaScopriProdotti: 'Talìa i prodotti', // dalla bozza
     features: [
       {
-        title: 'Travagghiu artigianali', // SCN da validare
+        title: 'Travagghiatu a manu nna putìa', // SCN da validare
         description: 'Ogni pezzu è disignatu e travagghiatu a manu nna putìa, non assemblatu di pezzi standard.', // SCN da validare
       },
       {
@@ -65,7 +65,7 @@ export const scn = {
     ],
     perche: {
       eyebrow: 'Picchì scegliri a nuàutri', // SCN da validare
-      title: 'Un misteri, tri generazioni.', // SCN da validare
+      title: 'Un misteri, dui generazioni.', // SCN da validare
     },
     prodottiSection: {
       eyebrow: 'Prodotti',
@@ -87,8 +87,8 @@ export const scn = {
     stats: [
       { value: '55+', label: 'Anni di esperienza' }, // SCN da validare
       { value: '1.200+', label: 'Travagghi fatti' }, // SCN da validare
-      { value: '3', label: 'Generazioni nna putìa' }, // SCN da validare
-      { value: '100%', label: 'Travagghi artigianali' }, // SCN da validare
+      { value: '2', label: 'Generazioni nna putìa' }, // SCN da validare
+      { value: '100%', label: 'Travagghi fatti a manu' }, // SCN da validare
     ],
   },
   prodotti: {
@@ -121,7 +121,7 @@ export const scn = {
     ctaBottone: 'Addumanna u pribintivu →', // validare: "pribintivu"/"previntivu"
   },
   chiSiamo: {
-    title: 'Tri generazioni, un solu misteri.', // SCN da validare
+    title: 'Dui generazioni, un solu misteri.', // SCN da validare
     subtitle: 'U ferru è na cosa di famigghia.', // dalla bozza
     body: [
       'Semu i frati Lombardo, e u ferru u rispiràmmu prima ancora di travagghiàrilu. Nostru patri ni crisciu nna putìa: n’insignàu l’arti du ferru comu ci l’avìanu ’nsignata a iddu — cu pacenzia, pricisioni e rispettu pu materiali. N’insignàu ca un cancellu non si judica quannu u cunsigni, ma doppu vint’anni di suli, acqua e salsedini.',
@@ -146,8 +146,8 @@ export const scn = {
       },
       {
         year: 'Oggi',
-        title: 'Terza generazioni', // SCN da validare
-        text: 'A putìa cuntinua a crisciri restannu fedele ô travagghiu artigianali, un pezzu â vota.', // SCN da validare
+        title: 'A secunna generazioni, oggi', // SCN da validare
+        text: 'A putìa cuntinua a crisciri restannu fedele ô travagghiu fattu a manu, un pezzu â vota.', // SCN da validare
       },
     ],
     cta: {
