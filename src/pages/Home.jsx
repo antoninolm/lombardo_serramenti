@@ -26,14 +26,6 @@ function HeroQuote({ quotes }) {
       >
         {quotes[index]}
       </p>
-      <div className="mt-3 flex gap-1.5" aria-hidden="true">
-        {quotes.map((quote, i) => (
-          <span
-            key={quote}
-            className={`h-1 w-6 rounded-full transition-colors ${i === index ? 'bg-ember-500' : 'bg-cream-300'}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

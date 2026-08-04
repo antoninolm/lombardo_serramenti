@@ -42,6 +42,11 @@ export const scn = {
         'Ogni cancellu cunta a casa ca talìa.', // dalla bozza
         'Vattemu u ferru di dui generazioni.', // dalla bozza
         'Supra misura non è na scelta: è u nostru modu di travagghiari.', // dalla bozza
+        'U focu china u ferru, a pacenzia china u focu.', // SCN da validare
+        'Non vinnemu cancelli: custruimu trasuti chi duranu.', // SCN da validare
+        'Dui generazioni, a stessa ancuina.', // SCN da validare
+        'U ferru non perdona a pressa.', // SCN da validare
+        "Darreri ogni ringhera, na manu chi l'ha forgiata.", // SCN da validare
       ],
     },
     ctaScopriProdotti: 'Talìa i prodotti', // dalla bozza
