@@ -76,6 +76,20 @@ export const scn = {
       title: 'I nostri travagghi', // SCN da validare
       link: 'Talìa tutti i prodotti →', // SCN da validare (adattato da "Talìa i prodotti" della bozza)
     },
+    lavorazioni: {
+      ferro: {
+        title: 'Ferru', // SCN da validare
+        description: "Cancelli, ringheri e 'nfirriati fatti a manu nna nostra putìa, cu tecnica artigiana.", // SCN da validare
+      },
+      acciaio: {
+        title: 'Acciaru', // SCN da validare
+        description: 'Strutturi e purtuna in acciaru supra misura, sodi e pensati pi durari nto tempu.', // SCN da validare
+      },
+      alluminio: {
+        title: 'Alluminiu', // SCN da validare
+        description: "Serramenti e 'nfissi in alluminiu di precisioni, pi finituri muderni e senza manutenzioni.", // SCN da validare
+      },
+    },
     galleria: {
       eyebrow: 'Galleria',
       title: 'Di li nostri travagghi', // SCN da validare

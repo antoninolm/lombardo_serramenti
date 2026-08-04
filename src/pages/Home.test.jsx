@@ -91,4 +91,37 @@ describe('Home', () => {
       }),
     ).toBeInTheDocument()
   })
+
+  describe('sezione "Le nostre lavorazioni" per materiale', () => {
+    it('mostra le card Ferro/Acciaio/Alluminio con link a /prodotti in italiano, senza "artigian…" per Acciaio/Alluminio', () => {
+      renderHome()
+      const ferroCard = screen.getByRole('heading', { name: 'Ferro', level: 3 }).closest('a')
+      const acciaioCard = screen.getByRole('heading', { name: 'Acciaio', level: 3 }).closest('a')
+      const alluminioCard = screen.getByRole('heading', { name: 'Alluminio', level: 3 }).closest('a')
+
+      expect(ferroCard).toHaveAttribute('href', '/prodotti')
+      expect(acciaioCard).toHaveAttribute('href', '/prodotti')
+      expect(alluminioCard).toHaveAttribute('href', '/prodotti')
+
+      expect(ferroCard).toHaveTextContent(/lavorati a mano/i)
+      expect(acciaioCard).not.toHaveTextContent(/artigian/i)
+      expect(alluminioCard).not.toHaveTextContent(/artigian/i)
+    })
+
+    it('mostra le card Ferru/Acciaru/Alluminiu con link a /prodotti in siciliano, senza "artigian…" per Acciaru/Alluminiu', () => {
+      renderHome()
+      fireEvent.click(screen.getByRole('button', { name: 'SIC' }))
+
+      const ferroCard = screen.getByRole('heading', { name: 'Ferru', level: 3 }).closest('a')
+      const acciaioCard = screen.getByRole('heading', { name: 'Acciaru', level: 3 }).closest('a')
+      const alluminioCard = screen.getByRole('heading', { name: 'Alluminiu', level: 3 }).closest('a')
+
+      expect(ferroCard).toHaveAttribute('href', '/prodotti')
+      expect(acciaioCard).toHaveAttribute('href', '/prodotti')
+      expect(alluminioCard).toHaveAttribute('href', '/prodotti')
+
+      expect(acciaioCard).not.toHaveTextContent(/artigian/i)
+      expect(alluminioCard).not.toHaveTextContent(/artigian/i)
+    })
+  })
 })

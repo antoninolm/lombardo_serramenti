@@ -7,7 +7,7 @@ import StatsBand from '../components/StatsBand'
 import CtaBanner from '../components/CtaBanner'
 import Carousel from '../components/Carousel'
 import ReviewsBanner from '../components/ReviewsBanner'
-import { prodotti } from '../data/prodotti'
+import { materiali } from '../data/materiali'
 import { galleriaItems } from '../data/galleria'
 import useLanguage from '../i18n/useLanguage'
 import useRotator from '../hooks/useRotator'
@@ -85,14 +85,16 @@ export default function Home() {
             </Link>
           }
         />
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {prodotti.map((categoria) => (
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          {materiali.map((categoria) => (
             <CategoryCard
               key={categoria.slug}
               slug={categoria.slug}
+              to="/prodotti"
               image={categoria.image}
               imageAlt={categoria.imageAlt}
-              title={t(`prodotti.${categoria.slug}.title`)}
+              title={t(`home.lavorazioni.${categoria.slug}.title`)}
+              description={t(`home.lavorazioni.${categoria.slug}.description`)}
             />
           ))}
         </div>

@@ -67,6 +67,20 @@ export const it = {
       title: 'Le nostre lavorazioni',
       link: 'Vedi tutti i prodotti →',
     },
+    lavorazioni: {
+      ferro: {
+        title: 'Ferro',
+        description: 'Cancelli, ringhiere e inferriate lavorati a mano nella nostra officina, con tecnica artigianale.',
+      },
+      acciaio: {
+        title: 'Acciaio',
+        description: 'Strutture e portoni in acciaio su misura, solidi e pensati per durare nel tempo.',
+      },
+      alluminio: {
+        title: 'Alluminio',
+        description: 'Serramenti e infissi in alluminio di precisione, per finiture moderne e senza manutenzione.',
+      },
+    },
     galleria: {
       eyebrow: 'Galleria',
       title: 'Dalle nostre realizzazioni',
