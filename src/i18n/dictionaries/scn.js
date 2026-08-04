@@ -141,7 +141,7 @@ export const scn = {
     },
     pageTitle: 'I nostri travagghi.', // SCN da validare
     pageDescription:
-      'Ogni travagghiu è fattu supra misura, dû disignu â posa in opira. Eccu i categorii principali di prodotti chi facemu.', // SCN da validare
+      "Ogni travagghiu è fattu supra misura, dû disignu â posa in opira: travagghiamu u ferru cu tecnica artigiana, l'acciaru e l'alluminiu cu a stessa cura. Eccu i categorii principali di prodotti chi facemu.", // SCN da validare
     ctaBottone: 'Addumanna u pribintivu →', // validare: "pribintivu"/"previntivu"
   },
   chiSiamo: {

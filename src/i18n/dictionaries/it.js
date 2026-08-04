@@ -132,7 +132,7 @@ export const it = {
     },
     pageTitle: 'Le nostre lavorazioni.',
     pageDescription:
-      'Ogni lavoro è realizzato su misura, dal disegno alla posa in opera. Ecco le principali categorie di prodotti che realizziamo.',
+      "Ogni lavoro è realizzato su misura, dal disegno alla posa in opera: lavoriamo il ferro con tecnica artigianale, l'acciaio e l'alluminio con la stessa cura. Ecco le principali categorie di prodotti che realizziamo.",
     ctaBottone: 'Richiedi preventivo →',
   },
   chiSiamo: {
