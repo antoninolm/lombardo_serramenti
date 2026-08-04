@@ -11,6 +11,7 @@
     "test": "vitest run",
     "images:galleria": "node scripts/optimize-galleria-images.mjs",
     "images:prodotti": "node scripts/optimize-prodotti-images.mjs",
+    "images:categorie-materiale": "node scripts/optimize-categorie-materiale-images.mjs",
     "logo:crop": "node scripts/crop-logo.mjs"
   },
   "dependencies": {

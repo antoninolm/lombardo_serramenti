@@ -41,6 +41,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Quotes hero portate da 5 a 10 (5 nuove, IT+SCN); rimossi gli indicatori a pallini della rotazione su richiesta cliente — resta solo la transizione testuale
 - 2026-08-02: Rimosso il pulsante "Chiamaci" dalla Home (CTA finale); email e telefono in Contatti resi interattivi (mailto:/tel:) e corretto il wrapping dell'email che usciva dal box
 - 2026-08-02: Aggiunta sezione "Dicono di noi" in Home, solo link alla scheda Google Business (nessuna recensione mostrata: profilo verificato di recente, ancora senza recensioni reali). Arricchimento con recensioni vere selezionate rimane in Backlog (Fase 7).
+- 2026-08-04: Fase 3h: 3 foto per materiale (ferro, acciaio, alluminio) fornite dal cliente in `materiali/categorie_prodotti/{slug}.jpeg` (nomi file già coincidenti con lo slug, nessuna mappa di rinomina necessaria a differenza di Fase 3f), ottimizzate in WebP via nuovo `scripts/optimize-categorie-materiale-images.mjs` (stesso pattern di `optimize-prodotti-images.mjs`), output in `src/assets/categorie-materiale/{slug}.webp`, larghezza max 1200px, qualità 80: 84 KB → 80 KB totali. Sorgenti originali committate in git come già `materiali/foto-prodotti/`.
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
 
 ## Fuori scope
@@ -387,3 +388,28 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Deploy Vercel "Ready" dopo il push finale: verrà confermato dopo il push (vedi commit di chiusura)
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
+
+## Fase 3h — Contratto
+
+### Cosa aspettarsi a fine fase
+- Home (/): la sezione "Le nostre lavorazioni" mostra 3 card per materiale (Ferro, Acciaio, Alluminio) con foto reali, al posto delle 5 card per categoria prodotto
+- Il link "Vedi tutti i prodotti →" e il click su ciascuna delle 3 card portano a `/prodotti`, invariata sotto l'intro: le 5 categorie (Cancelli, Ringhiere & Balaustre, Portoni & Serrande, Inferriate & Grate di Sicurezza, Opere su Misura) restano identiche, solo il testo introduttivo della pagina è aggiornato per citare ferro/acciaio/alluminio
+- Il form Richiedi Preventivo (menu "Tipo di lavoro") resta invariato
+- Regola di copy rispettata: "artigianale"/"lavorato a mano" solo per il ferro; i testi di Acciaio e Alluminio non la usano mai
+- Tutto tradotto in italiano e siciliano
+
+### Come testa Antonino (UAT, da browser)
+1. Apri la Home: verifica che la sezione "Le nostre lavorazioni" mostri 3 card — Ferro, Acciaio, Alluminio — con foto reali coerenti col materiale
+2. Clicca una delle 3 card: deve portare alla pagina Prodotti
+3. Apri /prodotti direttamente: verifica che sotto il testo introduttivo (ora aggiornato) ci siano ancora le 5 categorie di prima, invariate
+4. Apri Richiedi Preventivo: verifica che il menu "Tipo di lavoro" mostri le stesse opzioni di sempre
+5. Leggi il testo della card Alluminio (Home): verifica che non compaia mai la parola "artigianale"
+6. Ripeti i punti 1-5 in siciliano (toggle SIC)
+7. Ripeti dal telefono: card leggibili, foto corrette, niente elementi tagliati
+8. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build`, `npm run lint`, `npm test` senza errori dopo ogni task
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: 3 card materiale in Home con immagini reali, link a `/prodotti` senza anchor, `/prodotti` invariata sotto l'intro con le 5 categorie originali, form Preventivo invariato, testo Alluminio/Acciaio senza "artigian…" in nessuna lingua, nessun errore console, screenshot desktop+mobile
+- Deploy Vercel "Ready" dopo ogni push della fase
