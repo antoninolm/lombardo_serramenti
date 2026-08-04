@@ -8,8 +8,8 @@ describe('Galleria', () => {
     installIntersectionObserverMock()
   })
 
-  it('mostra tutte e 14 le foto della galleria', () => {
+  it('mostra tutte e 15 le foto della galleria', () => {
     render(<Galleria />)
-    expect(screen.getAllByRole('img')).toHaveLength(14)
+    expect(screen.getAllByRole('img')).toHaveLength(15)
   })
 })

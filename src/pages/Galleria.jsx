@@ -3,7 +3,7 @@ import GalleryItem from '../components/GalleryItem'
 import { galleriaItems } from '../data/galleria'
 import useLanguage from '../i18n/useLanguage'
 
-const EAGER_COUNT = 4
+const EAGER_COUNT = 6
 
 export default function Galleria() {
   const { t } = useLanguage()
@@ -21,7 +21,7 @@ export default function Galleria() {
       </section>
 
       <div className="mx-auto mt-10 w-full max-w-[1400px] pb-16">
-        <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-0 sm:grid-cols-3">
           {galleriaItems.map((item, index) => (
             <GalleryItem key={item.id} src={item.src} alt={item.alt} eager={index < EAGER_COUNT} />
           ))}

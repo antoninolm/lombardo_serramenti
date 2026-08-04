@@ -12,6 +12,7 @@ import galleria11 from '../assets/galleria/thumb/galleria11.webp'
 import galleria12 from '../assets/galleria/thumb/galleria12.webp'
 import galleria13 from '../assets/galleria/thumb/galleria13.webp'
 import galleria14 from '../assets/galleria/thumb/galleria14.webp'
+import galleria15 from '../assets/galleria/thumb/galleria15.webp'
 
 // TODO(backlog): didascalie/alt specifiche per ogni foto da definire col cliente
 const ALT_TEXT = 'Realizzazione in ferro — officina Lombardo'
@@ -31,4 +32,5 @@ export const galleriaItems = [
   { id: 12, src: galleria12, alt: ALT_TEXT },
   { id: 13, src: galleria13, alt: ALT_TEXT },
   { id: 14, src: galleria14, alt: ALT_TEXT },
+  { id: 15, src: galleria15, alt: ALT_TEXT },
 ]
