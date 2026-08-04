@@ -51,4 +51,23 @@ describe('Contatti', () => {
     fireEvent.click(screen.getByRole('button', { name: 'SIC' }))
     expect(screen.getByRole('link', { name: 'Rapri in Google Maps →' })).toBeInTheDocument()
   })
+
+  it('mostra telefono ed email come link cliccabili in italiano', () => {
+    renderContatti()
+    expect(screen.getByRole('link', { name: '+39 366 547 2502' })).toHaveAttribute('href', 'tel:+393665472502')
+    expect(screen.getByRole('link', { name: 'lombardoserramenti.contatti@gmail.com' })).toHaveAttribute(
+      'href',
+      'mailto:lombardoserramenti.contatti@gmail.com',
+    )
+  })
+
+  it('mostra telefono ed email come link cliccabili in siciliano dopo il toggle', () => {
+    renderContatti()
+    fireEvent.click(screen.getByRole('button', { name: 'SIC' }))
+    expect(screen.getByRole('link', { name: '+39 366 547 2502' })).toHaveAttribute('href', 'tel:+393665472502')
+    expect(screen.getByRole('link', { name: 'lombardoserramenti.contatti@gmail.com' })).toHaveAttribute(
+      'href',
+      'mailto:lombardoserramenti.contatti@gmail.com',
+    )
+  })
 })

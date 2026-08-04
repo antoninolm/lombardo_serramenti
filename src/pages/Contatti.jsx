@@ -20,8 +20,14 @@ export default function Contatti() {
         <div className="mt-8 grid gap-8 sm:grid-cols-[minmax(280px,1fr)_minmax(280px,1.3fr)]">
           <div className="grid gap-4 sm:grid-cols-2 sm:self-start">
             <InfoCard title={t('contatti.cards.indirizzo')} lines={contatti.indirizzo} />
-            <InfoCard title={t('contatti.cards.telefono')} lines={[contatti.telefono]} />
-            <InfoCard title={t('contatti.cards.email')} lines={[contatti.email]} />
+            <InfoCard
+              title={t('contatti.cards.telefono')}
+              lines={[{ text: contatti.telefono, href: `tel:${contatti.telefono.replace(/\s/g, '')}` }]}
+            />
+            <InfoCard
+              title={t('contatti.cards.email')}
+              lines={[{ text: contatti.email, href: `mailto:${contatti.email}` }]}
+            />
             <InfoCard title={t('contatti.cards.orari')} lines={t('common.orari')} />
           </div>
           <div className="flex flex-col gap-3">
