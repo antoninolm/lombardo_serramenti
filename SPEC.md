@@ -40,6 +40,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Corretti i fatti storici (2 generazioni, non 3) e rimossa la dicitura "lavorazioni artigianali" isolata dal contesto ferro, in tutte le pagine e in entrambe le lingue
 - 2026-08-02: Quotes hero portate da 5 a 10 (5 nuove, IT+SCN); rimossi gli indicatori a pallini della rotazione su richiesta cliente — resta solo la transizione testuale
 - 2026-08-02: Rimosso il pulsante "Chiamaci" dalla Home (CTA finale); email e telefono in Contatti resi interattivi (mailto:/tel:) e corretto il wrapping dell'email che usciva dal box
+- 2026-08-02: Aggiunta sezione "Dicono di noi" in Home, solo link alla scheda Google Business (nessuna recensione mostrata: profilo verificato di recente, ancora senza recensioni reali). Arricchimento con recensioni vere selezionate rimane in Backlog (Fase 7).
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
 
 ## Fuori scope
@@ -53,7 +54,7 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - Recuperare/aggiungere una foto col padre (fondatore) in officina
 - Creare/collegare una scheda Google Business Profile per l'officina
 - Numero di telefono provvisorio/fake (366 547 2502) in uso in data/contatti.js e nella CTA "Chiamaci": sostituire con il numero reale dell'officina appena disponibile
-- Sezione "Dicono di noi" (recensioni/testimonianze clienti, selezione manuale) — da valutare
+- Sezione "Dicono di noi" in Home: versione solo-link a Google aggiunta in Fase 3g; arricchimento con recensioni vere selezionate (stelle, citazioni clienti) resta da valutare quando il cliente le sceglierà
 - Prenotazione interventi online — da valutare
 - Lightbox per la Galleria — da valutare (le immagini `full/` sono già predisposte, vedi decisione Fase 3a)
 - Dominio custom (fine progetto) — sbloccherebbe anche un mittente email professionale su Resend (invece di onboarding@resend.dev)
@@ -351,3 +352,38 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Corrispondenza foto/categoria e qualità del ritaglio giudicata da un occhio umano reale (non lo screenshot di Claude Code): **NON VERIFICATO** — richiede conferma di Antonino in UAT
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate — in particolare il giudizio umano su corrispondenza foto/categoria e qualità del ritaglio, che è lo scopo stesso di questa fase.
+
+## Fase 3g — Contratto
+
+### Cosa aspettarsi a fine fase
+- Home (/): nuova sezione "Dicono di noi" tra il carosello "Dalle nostre realizzazioni" e la CTA finale "Hai un progetto in mente?"
+- La sezione mostra solo un titolo, una breve frase di invito e un link "Leggi le recensioni su Google →" (SIC: "Talìa i recensioni supra Google →") che apre in una nuova scheda la scheda Google Business reale dell'officina (stessa scheda già linkata da "Apri in Google Maps" in Contatti)
+- Nessuna recensione, stella, punteggio o nome cliente mostrato a schermo: il profilo Google è verificato ma non ha ancora recensioni reali, e non vengono mai mostrate testimonianze finte/placeholder
+- Sezione tradotta in italiano e siciliano, coerente nello stile con le altre sezioni della Home ma visivamente distinta dalla CTA preventivo
+
+### Come testa Antonino (UAT, da browser)
+1. Apri la Home e scorri fino a dopo il carosello delle realizzazioni: verifica che compaia la sezione "Dicono di noi" prima della CTA finale "Hai un progetto in mente?"
+2. Verifica che non ci sia nessuna recensione, stella o nome cliente a schermo: solo l'invito e il link
+3. Clicca "Leggi le recensioni su Google →": deve aprirsi in una nuova scheda la scheda Google Business reale dell'officina
+4. Ripeti i punti 1-3 in siciliano (toggle SIC)
+5. Ripeti dal telefono: sezione leggibile, link cliccabile, niente elementi tagliati o sovrapposti
+6. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build` senza errori
+- `npm run lint` senza errori
+- `npm test` verde (nuovi test sulla sezione "Dicono di noi" in italiano e siciliano)
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: sezione visibile tra carosello e CTA finale, link con `href` corretto verso la scheda Google e `target="_blank"`, nessuna recensione/stella/nome a schermo, screenshot desktop + mobile, nessun errore console
+- Deploy Vercel "Ready" dopo il push finale
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-02)
+- `npm run build` senza errori: **PASS** (build in ~340ms, nessun errore)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (15 file di test, 64/64 test — 2 nuovi su "Dicono di noi" IT/SCN, nessuna regressione)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 25 file `.jsx` controllati, incluso il nuovo `ReviewsBanner.jsx`)
+- Verifica browser headless (Playwright, installato temporaneamente via `npm install --no-save`, rimosso a verifica completata) su build locale (`vite preview`), desktop (1440×900) e mobile (390×844): **PASS** — sezione "Dicono di noi" presente una sola volta, posizionata correttamente tra il carosello realizzazioni e la CTA finale "Hai un progetto in mente?" (verificato via ordine dei `<section>` nel DOM), link con `href` verso la scheda Google Business reale e `target="_blank"`, nessun termine sospetto di recensione (stelle, "5/5", "4.5" ecc.) trovato nel testo della pagina, nessun errore console, nessuno scroll orizzontale
+- Screenshot desktop e mobile con la sezione scrollata in vista: **PASS** — ispezionati visivamente, box bianco bordato + bottone outline chiaramente distinto dalla CTA preventivo (box scuro/crema con bottone pieno) subito sotto, nessuna recensione/stella/nome cliente mostrata
+- Deploy Vercel "Ready" dopo il push finale: verrà confermato dopo il push (vedi commit di chiusura)
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.

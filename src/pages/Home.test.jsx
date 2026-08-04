@@ -69,4 +69,26 @@ describe('Home', () => {
       ).toBeInTheDocument()
     })
   })
+
+  it('mostra la sezione "Dicono di noi" con link a Google in italiano', () => {
+    renderHome()
+    expect(screen.getByText('Dicono di noi')).toBeInTheDocument()
+    const link = screen.getByRole('link', {
+      name: 'Leggi le recensioni di Lombardo Serramenti su Google (si apre in una nuova scheda)',
+    })
+    expect(link).toHaveTextContent('Leggi le recensioni su Google →')
+    expect(link).toHaveAttribute('href', expect.stringContaining('google.com/maps/place/Lombardo+Serramenti'))
+    expect(link).toHaveAttribute('target', '_blank')
+  })
+
+  it('mostra la sezione "Dicono di noi" in siciliano dopo il toggle', () => {
+    renderHome()
+    fireEvent.click(screen.getByRole('button', { name: 'SIC' }))
+    expect(screen.getByText('Chi dicinu di nuàutri')).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', {
+        name: 'Talìa i recensioni di Lombardo Serramenti supra Google (si rapri nna na nova scheda)',
+      }),
+    ).toBeInTheDocument()
+  })
 })

@@ -75,6 +75,12 @@ export const it = {
       prev: 'Foto precedente',
       next: 'Foto successiva',
     },
+    dicono: {
+      title: 'Dicono di noi',
+      subtitle: 'Le opinioni dei nostri clienti su Google.',
+      linkLabel: 'Leggi le recensioni su Google →',
+      linkAriaLabel: 'Leggi le recensioni di Lombardo Serramenti su Google (si apre in una nuova scheda)',
+    },
     ctaFinale: {
       title: 'Hai un progetto in mente?',
       description: 'Raccontaci il tuo progetto: ti rispondiamo con un preventivo su misura, senza impegno.',

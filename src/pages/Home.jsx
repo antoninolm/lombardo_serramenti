@@ -6,6 +6,7 @@ import CategoryCard from '../components/CategoryCard'
 import StatsBand from '../components/StatsBand'
 import CtaBanner from '../components/CtaBanner'
 import Carousel from '../components/Carousel'
+import ReviewsBanner from '../components/ReviewsBanner'
 import { prodotti } from '../data/prodotti'
 import { galleriaItems } from '../data/galleria'
 import useLanguage from '../i18n/useLanguage'
@@ -125,6 +126,10 @@ export default function Home() {
             )}
           />
         </div>
+      </section>
+
+      <section className="py-16">
+        <ReviewsBanner />
       </section>
 
       <section className="pb-20">

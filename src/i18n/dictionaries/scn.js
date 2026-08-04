@@ -84,6 +84,12 @@ export const scn = {
       prev: 'Foto prima', // SCN da validare
       next: 'Foto doppu', // SCN da validare
     },
+    dicono: {
+      title: 'Chi dicinu di nuàutri', // SCN da validare
+      subtitle: "L'opinioni di li nostri clienti supra Google.", // SCN da validare
+      linkLabel: 'Talìa i recensioni supra Google →', // SCN da validare
+      linkAriaLabel: 'Talìa i recensioni di Lombardo Serramenti supra Google (si rapri nna na nova scheda)', // SCN da validare
+    },
     ctaFinale: {
       title: 'Hai un pruggettu ’n testa?', // SCN da validare
       description: 'Cuntaci u to pruggettu: ti arrispunnemu cu un pribintivu supra misura, senza ’mpegnu.', // SCN da validare
