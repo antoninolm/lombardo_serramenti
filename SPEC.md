@@ -416,3 +416,17 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
 - Verifica browser headless: 3 card materiale in Home con immagini reali, link a `/prodotti` senza anchor, `/prodotti` invariata sotto l'intro con le 5 categorie originali, form Preventivo invariato, testo Alluminio/Acciaio senza "artigian…" in nessuna lingua, nessun errore console, screenshot desktop+mobile
 - Deploy Vercel "Ready" dopo ogni push della fase
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-04)
+- `npm run build` senza errori: **PASS** (nessun errore, in tutti e 4 i task della fase)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning)
+- `npm test` verde: **PASS** (15 file di test, 66/66 test — 4 nuovi su Home per le card materiale IT/SIC, nessuna regressione su Prodotti/Preventivo/resto della suite)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 25 file `.jsx` controllati)
+- Peso immagini `src/assets/categorie-materiale/`: **PASS** — 84 KB → 80 KB totali (3 foto)
+- Verifica browser headless (Playwright, installato temporaneamente via `npm install --no-save`, rimosso a verifica completata) su build locale (`vite preview`), desktop (1440×900) e mobile (390×844), IT e SIC: **PASS** — Home mostra esattamente 3 card materiale (Ferro/Acciaio/Alluminio, Ferru/Acciaru/Alluminiu in SIC) con href `/prodotti` su tutte e 3, testo Acciaio/Alluminio (ed equivalenti SIC) verificato senza "artigian…"; Prodotti mostra tutte e 5 le categorie originali invariate (Cancelli, Ringhiere & Balaustre, Portoni & Serrande, Inferriate & Grate di Sicurezza, Opere su Misura, ed equivalenti SIC) con il nuovo testo intro che cita ferro/acciaio/alluminio; form Preventivo — menu "Tipo di lavoro" con le stesse 6 opzioni di sempre (Seleziona…, Cancelli, Ringhiere & Balaustre, Portoni & Serrande, Inferriate & Grate di Sicurezza, Opere su Misura, Altro); nessun errore console su tutte le combinazioni testate; nessuno scroll orizzontale
+- Screenshot Home e Prodotti, desktop e mobile, IT e SIC: **PASS** — ispezionati visivamente, card materiale coerenti col layout esistente, pagina Prodotti pixel-identica alle 5 categorie di prima salvo il nuovo testo intro
+- Deploy Vercel "Ready" dopo ogni push della fase (commit `e64a879`, `2ad125b`, `ec8fb4f`): **PASS** — verificato via GitHub commit status API su ognuno dei 3 push, tutti "success"
+- Foto "Ferro" (Shutterstock, watermark visibile, bassa risoluzione): pubblicata su decisione esplicita di Antonino durante la fase (vedi Backlog), non un difetto non segnalato — **PASS** come da istruzione ricevuta, non **FAIL**
+- Corrispondenza foto/materiale e giudizio estetico complessivo da un occhio umano reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
