@@ -15,8 +15,8 @@ async function run() {
     .filter((f) => /^galleria\d+\.jpe?g$/i.test(f))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
 
-  if (files.length !== 14) {
-    console.warn(`Attenzione: attese 14 foto sorgente, trovate ${files.length}`)
+  if (files.length !== 15) {
+    console.warn(`Attenzione: attese 15 foto sorgente, trovate ${files.length}`)
   }
 
   await Promise.all(VARIANTS.map((v) => mkdir(join(OUT_DIR, v.dir), { recursive: true })))

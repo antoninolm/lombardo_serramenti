@@ -45,6 +45,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-04: Fase 3h: la sezione "Le nostre lavorazioni" in Home mostra ora 3 card per materiale (Ferro, Acciaio, Alluminio, nuovo `src/data/materiali.js`) invece delle 5 categorie prodotto (`data/prodotti.js`, invariato, resta usato solo da `/prodotti` e dal form Preventivo). Le 3 card linkano genericamente a `/prodotti` (nessun anchor `#slug`, che esiste solo per le 5 categorie prodotto): restano cliccabili come tutte le altre card della Home, invece di introdurre un pattern "card non cliccabile" nuovo. `CategoryCard.jsx` esteso con due prop opzionali — `to` (override della destinazione, default invariato `/prodotti#${slug}` se omesso) e `description` (paragrafo opzionale sotto il titolo) — senza impatto sull'uso esistente per le 5 categorie prodotto. Testi delle 3 card in nuovo namespace dizionario `home.lavorazioni.{ferro,acciaio,alluminio}`, visibili nella card stessa (non solo alt text), nel rispetto della regola "artigianale solo per il ferro": presente nel testo Ferro, assente in Acciaio e Alluminio.
 - 2026-08-04: Fase 3h: aggiornato `prodotti.pageDescription` (IT/SCN) per citare esplicitamente ferro, acciaio e alluminio, nel rispetto della regola di copy ("tecnica artigianale"/"artigiana" riferita solo al ferro). Le 5 categorie sotto l'intro (`ZigZagBlock` da `data/prodotti.js`) restano invariate.
 - 2026-08-02: Sostituita immagine categoria Ferro in Home con versione senza watermark fornita dal cliente
+- 2026-08-02: Aggiunta 15ª foto alla Galleria (galleria15), ottimizzata con lo stesso script esistente (`scripts/optimize-galleria-images.mjs`, aggiornato solo il controllo di sanità da 14 a 15 file attesi); peso `thumb/` con 15 foto: 1,1 MB totali, sotto il budget ~2.5 MB
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
 
 ## Fuori scope
@@ -431,3 +432,26 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Corrispondenza foto/materiale e giudizio estetico complessivo da un occhio umano reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
+
+## Fase 3i — Contratto
+
+### Cosa aspettarsi a fine fase
+- Galleria (/galleria): 15 foto invece di 14, la nuova in coda come ultimo elemento (nessun riordino delle 14 esistenti)
+- Griglia passata da 2 a 3 colonne (desktop/tablet), 1 colonna su mobile — 3×5 invece di 2×7
+- Tutte le altre caratteristiche invariate: celle verticali, full-width, gap zero, effetto scroll-reveal (fade+zoom-in)
+- Home, Prodotti, Contatti non toccati; il carosello "Dalle nostre realizzazioni" in Home mostrerà automaticamente anche la 15ª foto (stessa fonte dati, nessuna modifica al carosello stesso)
+
+### Come testa Antonino (UAT, da browser)
+1. Apri /galleria da PC: conta le foto (devono essere 15) e le colonne (3, non più 2)
+2. Verifica che la nuova foto (l'ultima) non sia tagliata male dal ritaglio automatico (object-cover)
+3. Scrolla lentamente: verifica che l'effetto di comparsa (dissolvenza/ingrandimento) funzioni ancora su tutte le foto, incluse le ultime
+4. Ripeti da tablet e da telefono: su mobile resta 1 colonna, nessuno scroll orizzontale
+5. Apri la Home e controlla che il carosello "Dalle nostre realizzazioni" includa anche la nuova foto
+6. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build`, `npm run lint`, `npm test` senza errori dopo ogni task
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Peso totale `src/assets/galleria/thumb/` con 15 foto sotto il budget ~2.5 MB
+- Verifica browser headless: 15 foto in griglia 3 colonne (desktop/tablet) / 1 colonna (mobile), nessun gap, reveal funzionante, nessuno scroll orizzontale a 390/768/1440px, screenshot desktop+mobile
+- Deploy Vercel "Ready" dopo ogni push della fase
