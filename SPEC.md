@@ -496,3 +496,16 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
 - Verifica browser headless: nuovo testo Chi Siamo completo, timeline a 3 tappe, nessun box immagine renderizzato, nessuno spazio vuoto anomalo, nessun errore console, screenshot desktop+mobile, IT e SCN
 - Deploy Vercel "Ready" dopo ogni push della fase
+
+### Checklist di chiusura (compilata da Claude Code, 2026-08-06)
+- `npm run build` senza errori: **PASS** (nessun errore, in tutti e 3 i task della fase)
+- `npm run lint` senza errori: **PASS** (nessun errore/warning, anche dopo aver commentato l'import `Placeholder`)
+- `npm test` verde: **PASS** (15 file di test, 66/66 test, nessuna regressione — il test esistente su `chiSiamo.subtitle` IT/SCN continua a passare invariato)
+- `node scripts/check-i18n-coverage.mjs`: **PASS** (nessuna stringa hardcoded su 25 file `.jsx` controllati)
+- Verifica browser headless (Playwright, installato temporaneamente via `npm install --no-save`, rimosso a verifica completata) su build locale (`vite preview`), desktop (1440×900) e mobile (390×844), IT e SIC: **PASS** — corpo Chi Siamo con 7 paragrafi (verificati testo per testo, incluso il primo "Dal 1968, una tradizione che continua." e l'ultimo "Dal 1968 costruiamo il futuro..."), sottotitolo pull-quote "Il ferro è una cosa di famiglia." invariato, timeline con esattamente 3 tappe (1968 Fondazione, Anni successivi Espansione ai serramenti in alluminio, Oggi), nessun box `[role="img"]` del vecchio Placeholder presente nel DOM, nessun errore console, nessuno scroll orizzontale
+- Screenshot Chi Siamo, desktop e mobile, IT e SIC: **PASS** — ispezionati visivamente, il blocco testo e la timeline si accostano naturalmente (spaziatura `py-16` su entrambi i lati) senza spazio vuoto anomalo dove prima c'era il Placeholder, layout equilibrato in entrambe le lingue e viewport
+- Deploy Vercel "Ready" dopo ogni push della fase (commit `38cd4d4`, `e68a51b`, `3efa7f9`): **PASS** — verificato via GitHub commit status API su tutti e 3 i push, tutti "success"
+- Rilettura del nuovo testo per refusi/coerenza con i fatti reali dell'azienda (anno di fondazione, dettagli espansione alluminio, attività attuali) e giudizio sulla timeline da un occhio umano reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT
+- Validazione della colonna SCN (contenuto interamente nuovo in questa fase) da parte di un parlante nativo: **NON VERIFICATO** — non bloccante per il deploy di lavoro, bloccante per il lancio ufficiale (vedi Backlog, vincolo già esistente)
+
+Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
