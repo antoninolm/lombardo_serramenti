@@ -164,14 +164,9 @@ export const scn = {
         text: 'Nasce a putìa, tra i primi da zona a travagghiari u ferru battutu supra misura pi privati e aziendi.', // SCN da validare
       },
       {
-        year: '1987',
-        title: 'Secunna generazioni', // SCN da validare
-        text: 'L’attività passa ê figghi du fundaturi, chi ’ntroducinu i primi travagghi in acciaru zincatu e inox.', // SCN da validare
-      },
-      {
-        year: '2005',
-        title: 'Nova sede', // SCN da validare
-        text: 'Trasfirimentu ’n una putìa cchiù ampia, cu novi machinari pi purtuna e serrandi supra misura.', // SCN da validare
+        year: 'Anni doppu', // SCN da validare
+        title: 'Espansioni ê serramenti in alluminiu', // SCN da validare
+        text: 'Junciemu ê travagghi in ferru la produzioni e la ’nstallazioni di serramenti in alluminiu, allargannu i nostri servizi.', // SCN da validare
       },
       {
         year: 'Oggi',

@@ -155,14 +155,9 @@ export const it = {
         text: 'Nasce l’officina, tra le prime della zona a lavorare il ferro battuto su misura per privati e imprese.',
       },
       {
-        year: '1987',
-        title: 'Seconda generazione',
-        text: 'L’attività passa ai figli del fondatore, che introducono le prime lavorazioni in acciaio zincato e inox.',
-      },
-      {
-        year: '2005',
-        title: 'Nuova sede',
-        text: 'Trasferimento in un’officina più ampia, con nuovi macchinari per portoni e serrande su misura.',
+        year: 'Anni successivi',
+        title: 'Espansione ai serramenti in alluminio',
+        text: 'Affianchiamo alle lavorazioni in ferro la produzione e l’installazione di serramenti in alluminio, ampliando i nostri servizi.',
       },
       {
         year: 'Oggi',
