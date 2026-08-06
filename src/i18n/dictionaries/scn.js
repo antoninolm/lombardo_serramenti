@@ -148,9 +148,14 @@ export const scn = {
     title: 'Dui generazioni, un solu misteri.', // SCN da validare
     subtitle: 'U ferru è na cosa di famigghia.', // dalla bozza
     body: [
-      'Semu i frati Lombardo, e u ferru u rispiràmmu prima ancora di travagghiàrilu. Nostru patri ni crisciu nna putìa: n’insignàu l’arti du ferru comu ci l’avìanu ’nsignata a iddu — cu pacenzia, pricisioni e rispettu pu materiali. N’insignàu ca un cancellu non si judica quannu u cunsigni, ma doppu vint’anni di suli, acqua e salsedini.',
-      'Oggi ’nsemi e tecnichi di sempri usamu attrezzi muderni, ma u modu non canciàu: sopralluogu, disegnu, realizzazioni e posa i sicutamu nuàutri, du primu incontru all’urtimu bulluni. Travagghiamu pi privati e aziendi, un pezzu a vota, supra misura. Picchì pi nuàutri u ferru non è sulu un misteri: è na cosa di famigghia.',
-    ], // dalla bozza (corpo completo)
+      'Ro 1968, na tradizioni chi cuntinua.', // SCN da validare
+      'A nostra attività nasce nto 1968 comu na nica putìa artigiana, fundata supra la passioni pi la travagghiata du ferru e supra l’attenzioni ê dettagli. Di lu principiu, l’obiettivu fu chiddu di realizzari prodotti sodi, funzionali e duraturi, fatti cu cura e precisioni.', // SCN da validare
+      'Cull’anni avemu junciutu ê travagghi tradizionali nto metallu la produzioni e la ’nstallazioni di serramenti in alluminiu, allargannu sempri chiossà i nostri servizi e ’nvistennu in tecnologii novi, mantenennu sempri la stessa cura e attenzioni ô dettagliu chi ni cuntraddistinguino.', // SCN da validare
+      'Oggi Lombardo Serramenti è un puntu di riferimentu nnâ realizzazioni di ’nfissi, cancelli, ringheri, scali, pergole, verandi, struttura metallica e travagghi supra misura, sicutannu ogni pruggettu dâ progettazioni finu â posa in opera.', // SCN da validare
+      'Cchiù di mezzu seculu di esperienza ni permetti di offriri ê nostri clienti qualità, affidabilità e soluzioni personalizzati, usannu materiali certificati e tecnichi custruttivi all’avanguardia.', // SCN da validare
+      'Ogni travagghiu rappresenta pi nuàutri un ’mpegnu cuncretu: trasformari i idei di li nostri clienti in opiri chi uniscinu estetica, sicurizza e durata nto tempu.', // SCN da validare
+      'Ro 1968 custruimu u futuru, mantenennu vivi i nostri radici artigiani.', // SCN da validare
+    ],
     storiaTitle: 'A nostra storia', // SCN da validare
     timeline: [
       {

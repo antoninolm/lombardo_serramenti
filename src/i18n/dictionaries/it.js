@@ -139,8 +139,13 @@ export const it = {
     title: 'Due generazioni, un solo mestiere.',
     subtitle: 'Il ferro è una cosa di famiglia.',
     body: [
-      'Siamo i fratelli Lombardo, e il ferro lo abbiamo respirato prima ancora di lavorarlo. Nostro padre ci ha cresciuti in officina: ci ha insegnato l’arte del ferro com’era stata insegnata a lui — con pazienza, precisione e rispetto per il materiale. Ci ha insegnato che un cancello non si giudica quando lo consegni, ma dopo vent’anni di sole, pioggia e salsedine.',
-      'Oggi affianchiamo alle tecniche di sempre strumenti moderni, ma il metodo non è cambiato: sopralluogo, disegno, realizzazione e posa li seguiamo noi, dal primo incontro all’ultimo bullone. Lavoriamo per privati e imprese, un pezzo alla volta, su misura. Perché per noi il ferro non è solo un mestiere: è una cosa di famiglia.',
+      'Dal 1968, una tradizione che continua.',
+      'La nostra azienda nasce nel 1968 come piccola officina artigianale, fondata sulla passione per la lavorazione del ferro e sull’attenzione ai dettagli. Fin dall’inizio, l’obiettivo è stato quello di realizzare prodotti solidi, funzionali e durevoli, costruiti con cura e precisione.',
+      'Negli anni abbiamo affiancato alle tradizionali lavorazioni metalliche la produzione e l’installazione di serramenti in alluminio, ampliando costantemente i nostri servizi e investendo in nuove tecnologie, mantenendo sempre la stessa cura e attenzione al dettaglio che ci contraddistinguono.',
+      'Oggi Lombardo Serramenti è un punto di riferimento nella realizzazione di infissi, cancelli, ringhiere, scale, pergole, verande, strutture metalliche e lavorazioni su misura, seguendo ogni progetto dalla progettazione fino alla posa in opera.',
+      'Più di mezzo secolo di esperienza ci permette di offrire ai nostri clienti qualità, affidabilità e soluzioni personalizzate, utilizzando materiali certificati e tecniche costruttive all’avanguardia.',
+      'Ogni lavoro rappresenta per noi un impegno concreto: trasformare le idee dei nostri clienti in opere che uniscono estetica, sicurezza e durata nel tempo.',
+      'Dal 1968 costruiamo il futuro, mantenendo vive le nostre radici artigianali.',
     ],
     storiaTitle: 'La nostra storia',
     timeline: [

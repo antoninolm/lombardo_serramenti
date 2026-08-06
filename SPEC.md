@@ -48,6 +48,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-02: Aggiunta 15ª foto alla Galleria (galleria15), ottimizzata con lo stesso script esistente (`scripts/optimize-galleria-images.mjs`, aggiornato solo il controllo di sanità da 14 a 15 file attesi); peso `thumb/` con 15 foto: 1,1 MB totali, sotto il budget ~2.5 MB
 - 2026-08-02: Griglia Galleria passata da 2×7 a 3×5 colonne per accogliere la 15ª foto, tutte le altre caratteristiche (celle verticali, full-width, gap zero, reveal) invariate
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
+- 2026-08-06: Aggiornato il testo Chi Siamo con la storia aziendale fornita dal cliente (dal 1968, espansione in alluminio, offerta attuale); riformulata la frase sull'espansione in alluminio per non usare "artigianale" in quel contesto, coerentemente con la regola di copy esistente.
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
@@ -470,3 +471,26 @@ Nota: le verifiche sopra sono state condotte da Claude Code con un browser headl
 - Corrispondenza foto/posizione e giudizio sul ritaglio (`object-cover`) da un occhio umano reale, prova di scroll fluido su un telefono reale: **NON VERIFICATO** — richiede conferma di Antonino in UAT
 
 Nota: le verifiche sopra sono state condotte da Claude Code con un browser headless (Playwright) come controllo di qualità interno, non sostituiscono lo UAT di Antonino richiesto dal processo phase-gate.
+
+## Fase 3j — Contratto
+
+### Cosa aspettarsi a fine fase
+- Chi Siamo (/chi-siamo): corpo testuale sostituito con la storia aziendale fornita dal cliente (dal 1968, espansione in alluminio, offerta attuale, "più di mezzo secolo di esperienza"), 7 paragrafi; il pull-quote "Il ferro è una cosa di famiglia." (sottotitolo sotto il titolo) resta invariato
+- Timeline "La nostra storia" ridotta da 4 a 3 tappe: 1968 Fondazione, Anni successivi (Espansione ai serramenti in alluminio, nessun anno preciso non fornito dal cliente), Oggi — coerente con la correzione già fissata "2 generazioni" (Fase 3g)
+- Nessun box immagine (Placeholder) visibile nella pagina; nessuno spazio vuoto anomalo al suo posto
+- Tutto tradotto in italiano e siciliano (contenuto nuovo marcato `// SCN da validare`)
+- Home, Prodotti, Galleria, Contatti, Preventivo non toccate
+
+### Come testa Antonino (UAT, da browser)
+1. Apri /chi-siamo: leggi tutto il nuovo testo, verifica che non ci siano refusi e che i fatti corrispondano alla storia reale dell'azienda (anno di fondazione, espansione in alluminio, attività attuali)
+2. Verifica la timeline "La nostra storia": 3 tappe (1968, Anni successivi, Oggi), nessuna data inventata
+3. Verifica che non ci sia nessun riquadro immagine vuoto o rotto tra il testo e la timeline, e che la pagina non sembri "vuota" in quel punto
+4. Ripeti i punti 1-3 in siciliano (toggle SIC)
+5. Ripeti dal telefono: testo leggibile, timeline leggibile, niente elementi tagliati o sovrapposti
+6. Segna ogni punto PASS/FAIL e riporta i FAIL nella chat con il project guide
+
+### Verifiche automatiche (eseguite da Claude Code prima di dichiarare pronta la fase)
+- `npm run build`, `npm run lint`, `npm test` senza errori dopo ogni task
+- `node scripts/check-i18n-coverage.mjs` senza nuove stringhe hardcoded
+- Verifica browser headless: nuovo testo Chi Siamo completo, timeline a 3 tappe, nessun box immagine renderizzato, nessuno spazio vuoto anomalo, nessun errore console, screenshot desktop+mobile, IT e SCN
+- Deploy Vercel "Ready" dopo ogni push della fase
