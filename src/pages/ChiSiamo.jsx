@@ -1,4 +1,5 @@
-import Placeholder from '../components/Placeholder'
+// TODO: reinserire quando arriva la foto del fondatore — vedi Backlog
+// import Placeholder from '../components/Placeholder'
 import SectionHeading from '../components/SectionHeading'
 import Timeline from '../components/Timeline'
 import CtaBanner from '../components/CtaBanner'
@@ -23,9 +24,11 @@ export default function ChiSiamo() {
         </div>
       </section>
 
+      {/* TODO: reinserire quando arriva la foto del fondatore — vedi Backlog
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
         <Placeholder alt="Officina di fabbro con banco da lavoro e attrezzi" ratio="21 / 9" />
       </section>
+      */}
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="font-display text-2xl font-bold sm:text-3xl">{t('chiSiamo.storiaTitle')}</h2>

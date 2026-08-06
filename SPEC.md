@@ -50,6 +50,7 @@ Home, Chi Siamo, Prodotti, Galleria, Contatti, Richiedi Preventivo
 - 2026-08-03: Fase 6 (feedback UAT): rivista la decisione precedente sul logo — Antonino ha chiesto la rimozione dello sfondo bianco (che appariva come un "adesivo" separato su Navbar/Hero) e un logo più grande in Navbar. `scripts/crop-logo.mjs` ora applica una trasparenza per chiave colore (alpha = distanza dal bianco per canale, con decontaminazione del colore per evitare aloni chiari sui bordi anti-aliasati) invece del semplice ritaglio con sfondo bianco pieno. Il chip crema dietro al logo nel footer scuro resta invariato: la trasparenza risolve il problema su sfondo chiaro (Navbar/Hero), ma su sfondo scuro il logo (testo blu/nero) resta illeggibile senza una base chiara dietro. Logo Navbar ingrandito da `h-8` a `h-16`, padding verticale header da `py-3` a `py-4` per ospitarlo comodamente.
 - 2026-08-06: Aggiornato il testo Chi Siamo con la storia aziendale fornita dal cliente (dal 1968, espansione in alluminio, offerta attuale); riformulata la frase sull'espansione in alluminio per non usare "artigianale" in quel contesto, coerentemente con la regola di copy esistente.
 - 2026-08-06: Timeline Chi Siamo ridotta da 4 a 3 tappe (1968 Fondazione, Anni successivi Espansione ai serramenti in alluminio senza anno preciso — non fornito dal cliente, Oggi) per restare coerente col nuovo testo (che non cita 1987/2005) e con la correzione già fissata "2 generazioni" (Fase 3g): la menzione di generazione resta solo nella tappa Oggi, la nuova tappa alluminio non specifica quale generazione l'abbia realizzata per non inventare un fatto non fornito.
+- 2026-08-06: Nascosto temporaneamente il box immagine in Chi Siamo, in attesa della foto del fondatore (vedi Backlog); layout della sezione riadattato di conseguenza (le due sezioni adiacenti si accostano naturalmente senza spazio vuoto anomalo).
 
 ## Fuori scope
 Express, MongoDB, autenticazione, CMS, e-commerce
@@ -59,7 +60,7 @@ Express, MongoDB, autenticazione, CMS, e-commerce
 - Validazione della colonna SCN da parte di un parlante nativo della famiglia: NON bloccante per i deploy di lavoro, BLOCCANTE per il lancio ufficiale del sito al pubblico
 - Setup SSH GitHub (opzionale, non bloccante: i push funzionano via HTTPS)
 - Alt text delle foto: rivedere/rifinire i testi descrittivi (accessibilità/SEO)
-- Recuperare/aggiungere una foto col padre (fondatore) in officina
+- Recuperare/aggiungere una foto col padre (fondatore) in officina — il box `<Placeholder>` è commentato in `src/pages/ChiSiamo.jsx` (Fase 3j) in attesa di questa foto: va scommentato (insieme all'import) quando disponibile
 - Creare/collegare una scheda Google Business Profile per l'officina
 - Numero di telefono provvisorio/fake (366 547 2502) in uso in data/contatti.js: sostituire con il numero reale dell'officina appena disponibile
 - ~~Foto "Ferro" con watermark Shutterstock~~ RISOLTO 2026-08-02: sostituita con versione ritagliata senza watermark fornita dal cliente. Restano `acciaio.jpeg`/`alluminio.jpeg`, foto stock generiche (non dell'officina): da valutare se sostituire con foto reali quando disponibili
